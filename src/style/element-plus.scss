@@ -1,0 +1,17 @@
+@use './variables.scss' as *;
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'danger': (
+      'base': $base-color-danger
+    ),
+    'warning': (
+      'base': $base-color-warning
+    ),
+    'success': (
+      'base': $base-color-success
+    ),
+    'info': (
+      'base': $base-color-info
+    )
+  )
+);

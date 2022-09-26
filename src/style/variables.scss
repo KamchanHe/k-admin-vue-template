@@ -1,0 +1,40 @@
+$base-color-primary: var(--el-color-primary);
+$base-color-danger: #ff4949;
+$base-color-warning: #ffba00;
+$base-color-success: #13ce66;
+$base-color-info: #1e1e1e;
+
+// sidebar
+$sidebar-bg: #2b2f3a;
+$sidebar-width: 210px;
+
+// sidebar-logo
+$logo-bg: #2b2f3a;
+$logo-text: #fff;
+
+// sidebar-vertical
+$v-menu-text: #fff;
+$v-menu-active-text: $base-color-primary;
+$v-submenu-active-text: $base-color-primary;
+$v-menu-bg: #304156;
+$v-menu-hover: #263445;
+$v-menu-active-bg: #263445;
+$v-menu-active-line-bg: $base-color-primary;
+$v-submenu-bg: #1f2d3d;
+$v-submenu-hover: #001528;
+$v-submenu-active-bg: #001528;
+$v-submenu-active-line-bg: $base-color-primary;
+
+// sidebar-horizontal
+$h-menu-text: #333;
+$h-menu-active-text: $base-color-primary;
+$h-submenu-active-text: $base-color-primary;
+$h-menu-bg: #fff;
+$h-menu-hover: #ebf3fe;
+$h-menu-active-bg: #ebf3fe;
+$h-menu-active-line-bg: $base-color-primary;
+$h-submenu-bg: #fff;
+$h-submenu-hover: #ebf3fe;
+$h-submenu-active-bg: #ebf3fe;
+$h-submenu-active-line-bg: $base-color-primary;
+$h-sidebar-bg: $base-color-primary;

@@ -1,0 +1,22 @@
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+:export {
+  theme: $base-color-primary;
+  menu-text: $v-menu-text;
+  menu-active-text: $v-menu-active-text;
+  submenu-active-text: $v-submenu-active-text;
+  menu-bg: $v-menu-bg;
+  menu-hover: $v-menu-hover;
+  submenu-bg: $v-submenu-bg;
+  submenu-hover: $v-submenu-hover;
+  sidebar-bg: $sidebar-bg;
+  sidebar-width: $sidebar-width;
+  mn-menu-text: $h-menu-text;
+  mn-menu-active-text: $h-menu-active-text;
+  mn-submenu-active-text: $h-submenu-active-text;
+  mn-menu-bg: $h-menu-bg;
+  mn-menu-hover: $h-menu-hover;
+  mn-submenu-bg: $h-submenu-bg;
+  mn-submenu-hover: $h-submenu-hover;
+  mn-sidebar-bg: $h-sidebar-bg;
+}
