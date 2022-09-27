@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
-import { RouteRecordRaw } from 'vue-router';
-import { PermissionStoreType } from '@/types/store/permission';
-import { RolesType } from '@/types/store/user';
+import type { RouteRecordRaw } from 'vue-router';
+import type { PermissionStoreType } from '@/types/store/permission';
 import { asyncRoutes, constantRoutes } from '@/router/modules/base';
+import type { RolesType } from '@/types/store/user';
 
 const hasPermission = (roles: RolesType, route: RouteRecordRaw) => {
   const targetRoles = route.meta?.roles as RolesType;

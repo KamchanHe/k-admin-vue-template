@@ -1,5 +1,5 @@
 import Service from '@/utils/request';
-import {
+import type {
   LoginRequest,
   LoginResponse,
   UserInfoRequest,

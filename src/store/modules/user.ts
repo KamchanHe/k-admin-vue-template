@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { UserStoreType } from '@/types/store/user';
+import type { UserStoreType } from '@/types/store/user';
 import { getInfo, login, logout } from '@/api/user';
 import {
   getToken as authGetToken,

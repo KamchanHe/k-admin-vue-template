@@ -1,4 +1,4 @@
-import { UserStoreType } from '@/types/store/user';
+import type { UserStoreType } from '@/types/store/user';
 
 export interface LoginRequest {
   username: string;
