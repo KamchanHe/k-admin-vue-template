@@ -29,54 +29,49 @@ export default [
   {
     url: '/k-admin-template/user/login',
     method: 'post',
-    response: (config: any) => {
+    response: (config) => {
       const { username } = config.body;
       const token = tokens[username];
-
-      // mock error
       if (!token) {
         return {
-          code: 60204,
+          code: 500,
           message: 'Account and password are incorrect.'
         };
       }
 
       return {
-        code: 20000,
+        code: 200,
         data: token
       };
     }
   },
-
   // get user info
   {
     url: '/k-admin-template/user/info',
     method: 'get',
-    response: (config: any) => {
+    response: (config) => {
       const { token } = config.query;
       const info = users[token];
-      // mock error
       if (!info) {
         return {
-          code: 50008,
+          code: 401,
           message: 'Login failed, unable to get user details.'
         };
       }
 
       return {
-        code: 20000,
+        code: 200,
         data: info
       };
     }
   },
-
   // user logout
   {
     url: '/k-admin-template/user/logout',
     method: 'post',
     response: () => {
       return {
-        code: 20000,
+        code: 200,
         data: 'success'
       };
     }

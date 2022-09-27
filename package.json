@@ -28,12 +28,16 @@
     "element-plus": "^2.2.17",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.22",
     "qs": "^6.11.0",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.6",
+    "@types/nprogress": "^0.2.0",
+    "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "@vitejs/plugin-vue": "^3.1.0",

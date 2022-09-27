@@ -37,12 +37,10 @@ class Service {
     this.instance.interceptors.response.use(
       (response: AxiosResponse<ResultType<unknown>>) => {
         const res = response.data;
-        // if the custom code is not 20000, it is judged as an error.
-        if (res.code !== 20000) {
+        if (res.code !== 200) {
           ElMessage.error(res.message || 'Error');
 
-          // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-          if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+          if (res.code === 401) {
             // to re-login
             ElMessageBox.confirm(
               'You have been logged out, you can cancel to stay on this page, or log in again',
@@ -57,7 +55,6 @@ class Service {
                 const userStore = useUserStore();
                 await userStore.logout();
                 window.location.reload();
-                return null;
               })
               .catch((error) => {
                 throw new Error(error);
@@ -82,9 +79,9 @@ class Service {
     return this.instance.request(config);
   }
 
-  public get<S>(
+  public get<Q, S>(
     url: string,
-    params?,
+    params?: Q,
     extraConfig?: AxiosRequestConfig
   ): Promise<ResultType<S>> {
     return this.instance.get(url, {
@@ -96,9 +93,9 @@ class Service {
     });
   }
 
-  public post<S>(
+  public post<Q, S>(
     url: string,
-    data?,
+    data?: Q,
     extraConfig?: AxiosRequestConfig
   ): Promise<ResultType<S>> {
     return this.instance.post(url, {
@@ -107,9 +104,9 @@ class Service {
     });
   }
 
-  public put<S>(
+  public put<Q, S>(
     url: string,
-    data?,
+    data?: Q,
     extraConfig?: AxiosRequestConfig
   ): Promise<ResultType<S>> {
     return this.instance.put(url, {
@@ -118,9 +115,9 @@ class Service {
     });
   }
 
-  public delete<S>(
+  public delete<Q, S>(
     url: string,
-    params?,
+    params?: Q,
     extraConfig?: AxiosRequestConfig
   ): Promise<ResultType<S>> {
     return this.instance.delete(url, {

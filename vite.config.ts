@@ -22,7 +22,7 @@ export default defineConfig({
       imports: ['vue', 'vue-router'],
       resolvers: [ElementPlusResolver()],
       eslintrc: {
-        enabled: true
+        enabled: false
       }
     }),
     Components({

@@ -1,6 +1,6 @@
-export const localGet = <T>(name: string): T => {
+export const localGet = <T>(name: string): T | null => {
   try {
-    return JSON.parse(localStorage.getItem(name));
+    return JSON.parse(localStorage.getItem(name) || '');
   } catch (error) {
     return null;
   }
@@ -18,9 +18,9 @@ export const localClear = () => {
   localStorage.clear();
 };
 
-export const sessionGet = <T>(name: string): T => {
+export const sessionGet = <T>(name: string): T | null => {
   try {
-    return JSON.parse(sessionStorage.getItem(name));
+    return JSON.parse(sessionStorage.getItem(name) || '');
   } catch (error) {
     return null;
   }

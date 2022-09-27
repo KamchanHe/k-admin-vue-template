@@ -51,17 +51,11 @@ const useUserStore = defineStore({
         })
           .then((res) => {
             const { data } = res;
-            if (!data) {
-              reject(new Error('Verification failed, please Login again.'));
-            }
-
-            const { roles, nickname, avatar } = data;
-
-            // roles must be a non-empty array
+            const { nickname, avatar } = data || {};
+            let { roles } = data;
             if (!roles || roles.length <= 0) {
-              return reject(
-                new Error('getInfo: roles must be a non-null array!')
-              );
+              roles = ['public'];
+              data.roles = ['public'];
             }
             this.nickname = nickname;
             this.avatar = avatar;
