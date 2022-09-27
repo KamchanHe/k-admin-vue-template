@@ -20,7 +20,10 @@ export default defineConfig({
     AutoImport({
       dts: 'src/auto-imports.d.ts',
       imports: ['vue', 'vue-router'],
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      eslintrc: {
+        enabled: true
+      }
     }),
     Components({
       dts: 'src/components.d.ts',
