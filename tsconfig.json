@@ -18,11 +18,11 @@
     }
   },
   "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "mock/**/*"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

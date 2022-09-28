@@ -25,7 +25,7 @@ module.exports = {
       './tsconfig.node.json',
       './tsconfig.eslint.json'
     ],
-    extraFileExtensions: ['.vue']
+    extraFileExtensions: ['.vue', '.ts', '.d.ts', '.tsx']
   },
   plugins: ['vue', '@typescript-eslint', 'prettier'],
   rules: {
