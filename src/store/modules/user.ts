@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import type { UserStoreType } from '@/types/store/user';
+import type { UserInfoResponse } from '@/types/api/user';
 import { getInfo, login, logout } from '@/api/user';
 import {
   getToken as authGetToken,
@@ -44,7 +45,7 @@ const useUserStore = defineStore({
     /**
      *  获取用户信息（昵称、头像、角色集合、权限集合）
      */
-    getUserInfo() {
+    getUserInfo(): Promise<UserInfoResponse> {
       return new Promise((resolve, reject) => {
         getInfo({
           token: this.token
