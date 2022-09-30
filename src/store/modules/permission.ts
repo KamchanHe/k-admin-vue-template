@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import type { RouteRecordRaw } from 'vue-router';
-import type { PermissionStoreType } from '@/types/store/permission';
 import { asyncRoutes, constantRoutes } from '@/router/modules/base';
+import type { PermissionStoreType } from '@/types/store/permission';
 import type { RolesType } from '@/types/store/user';
 
 const hasPermission = (roles: RolesType, route: RouteRecordRaw) => {

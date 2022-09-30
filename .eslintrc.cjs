@@ -25,9 +25,18 @@ module.exports = {
       './tsconfig.node.json',
       './tsconfig.eslint.json'
     ],
-    extraFileExtensions: ['.vue', '.ts', '.d.ts', '.tsx']
+    extraFileExtensions: ['.vue', '.js', '.jsx', '.ts', '.tsx', '.d.ts']
   },
   plugins: ['vue', '@typescript-eslint', 'prettier'],
+  settings: {
+    'import/extensions': ['.vue', '.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+    'import/resolver': {
+      alias: {
+        map: [['@', './src']],
+        extensions: ['.vue', '.js', '.jsx', '.ts', '.tsx', '.d.ts']
+      }
+    }
+  },
   rules: {
     'prettier/prettier': 'error',
     quotes: ['error', 'single'],
@@ -38,17 +47,6 @@ module.exports = {
     // import
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'import/no-cycle': 'off',
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        '': 'never',
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never'
-      }
-    ]
+    'import/no-cycle': 'off'
   }
 };

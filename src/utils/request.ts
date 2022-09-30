@@ -1,14 +1,10 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import qs from 'qs';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getToken } from '@/utils/auth';
 import { useUserStore } from '@/store';
-
-export type ResultType<T> = {
-  code: number;
-  message: string;
-  data: T;
-};
+import type { ResultType } from '@/types/axios';
 
 class Service {
   instance: AxiosInstance;

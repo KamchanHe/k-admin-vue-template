@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia';
-import type { UserStoreType } from '@/types/store/user';
-import type { UserInfoResponse } from '@/types/api/user';
 import { getInfo, login, logout } from '@/api/user';
 import {
   getToken as authGetToken,
@@ -8,6 +6,8 @@ import {
   setToken as authSetToken
 } from '@/utils/auth';
 import { resetRouter } from '@/router';
+import type { UserInfoResponse } from '@/types/api/user';
+import type { UserStoreType } from '@/types/store/user';
 
 const useUserStore = defineStore({
   id: 'user',
