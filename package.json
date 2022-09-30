@@ -6,19 +6,27 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "lint": "npm run lint:script && npm run lint:style",
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix --quiet ./",
     "lint:style": "stylelint --fix **/*.{html,vue,css,scss}",
     "postinstall": "husky install"
   },
   "lint-staged": {
-    "**/*.{js,jsx,tsx,ts,vue}": [
-      "npm run lint:script",
+    "**/*.{js,jsx,tsx,ts}": [
+      "prettier --write",
+      "eslint --fix",
       "git add"
     ],
-    "**/*.{html,vue,css,scss}": [
-      "npm run lint:style",
+    "**/*.vue": [
+      "stylelint --fix",
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{scss,css}": [
+      "stylelint --fix",
+      "prettier --write",
       "git add"
     ]
   },
