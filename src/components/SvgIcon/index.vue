@@ -24,9 +24,7 @@ const externalIconStyle = computed(() => {
     'mask-size': 'cover',
     '-webkit-mask': `url(${props.name}) no-repeat 50% 50%`,
     '-webkit-mask-size': 'cover',
-    'background-color': 'currentColor',
-    background: `url(${props.name}) no-repeat 50% 50%`,
-    'background-size': 'cover'
+    'background-color': 'currentColor'
   };
 });
 const symbolId = computed(() => `#${props.name}`);
