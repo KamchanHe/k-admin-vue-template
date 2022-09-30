@@ -46,6 +46,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'no-param-reassign': 'off',
+    'no-console': 'off',
     // vue
     'vue/multi-word-component-names': 'off',
     // import

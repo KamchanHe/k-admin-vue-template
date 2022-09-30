@@ -53,4 +53,35 @@ export function mix(color1: string, color2: string, weight: number) {
   return `#${rStr}${gStr}${bStr}`;
 }
 
+/**
+ * is external
+ * @param {string} path
+ * @return {boolean}
+ */
+export function isExternal(path: string): boolean {
+  return /^(https?|ftp|mailto|tel):/.test(path);
+}
+
+/**
+ * replace hump style named to line style
+ * HelloWorld => hello-world
+ * @param {string} name
+ * @return {string}
+ */
+export function replaceHumpToLine(name: string) {
+  const nameArr = name.split('');
+  return nameArr
+    .map((value, index) => {
+      if (index === 0) {
+        return value.toLocaleLowerCase();
+      }
+      const isCapital = value === value.toLocaleUpperCase();
+      if (isCapital) {
+        return `-${value.toLocaleLowerCase()}`;
+      }
+      return value;
+    })
+    .join('');
+}
+
 export default {};

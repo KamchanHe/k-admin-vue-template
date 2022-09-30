@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 import viteEslint from 'vite-plugin-eslint';
 import viteStylelint from 'vite-plugin-stylelint';
@@ -33,6 +34,10 @@ export default defineConfig({
           importStyle: 'sass'
         })
       ]
+    }),
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve('./src/assets/icons/')],
+      symbolId: 'local-icon-[name]'
     }),
     viteMockServe({
       mockPath: 'mock',

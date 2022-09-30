@@ -8,10 +8,6 @@ html {
   font-size: 14px;
 }
 
-#app {
-  height: 100%;
-}
-
 img,
 svg,
 video,
@@ -52,4 +48,12 @@ div:focus {
     visibility: hidden;
     content: ' ';
   }
+}
+
+#app {
+  height: 100%;
+}
+
+.icon {
+  font-size: 18px;
 }
