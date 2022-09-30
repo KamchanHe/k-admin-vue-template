@@ -1,8 +1,13 @@
+const path = require('path');
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2022: true
+    es2022: true,
+    node: true,
+    'vue/setup-compiler-macros': true
   },
+  plugins: ['vue', '@typescript-eslint', 'prettier'],
   extends: [
     'plugin:vue/vue3-essential',
     'airbnb-base',
@@ -27,7 +32,6 @@ module.exports = {
     ],
     extraFileExtensions: ['.vue', '.js', '.jsx', '.ts', '.tsx', '.d.ts']
   },
-  plugins: ['vue', '@typescript-eslint', 'prettier'],
   settings: {
     'import/extensions': ['.vue', '.js', '.jsx', '.ts', '.tsx', '.d.ts'],
     'import/resolver': {
