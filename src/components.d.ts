@@ -8,9 +8,12 @@ export {};
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton'];
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox'];
     ElCol: typeof import('element-plus/es')['ElCol'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
     ElDialog: typeof import('element-plus/es')['ElDialog'];
+    ElForm: typeof import('element-plus/es')['ElForm'];
+    ElFormItem: typeof import('element-plus/es')['ElFormItem'];
     ElIcon: typeof import('element-plus/es')['ElIcon'];
     ElIconPlus: typeof import('@element-plus/icons-vue')['Plus'];
     ElImage: typeof import('element-plus/es')['ElImage'];

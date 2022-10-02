@@ -35,7 +35,6 @@ class Service {
         const res = response.data;
         if (res.code !== 200) {
           ElMessage.error(res.message || 'Error');
-
           if (res.code === 401) {
             // to re-login
             ElMessageBox.confirm(

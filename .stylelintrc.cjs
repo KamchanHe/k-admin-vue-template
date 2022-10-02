@@ -15,6 +15,12 @@ module.exports = {
     }
   ],
   rules: {
-    'prettier/prettier': true
+    'prettier/prettier': true,
+    'selector-class-pattern': [
+      '^([a-z][a-zA-Z0-9]*)([-__]+[a-zA-Z0-9]+)*$',
+      {
+        message: 'Expected class selector to be kebab-case'
+      }
+    ],
   }
 };
