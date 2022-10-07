@@ -67,21 +67,29 @@ import Welcoming from '@/assets/illustrations/welcoming.svg';
 import WelcomeCats from '@/assets/illustrations/welcome-cats.svg';
 import Logo from '@/assets/images/logo.svg';
 import { useUserStore } from '@/store';
+import { localGet, localSet, localRemove } from '@/utils/storage';
+import { assign as _assign } from 'lodash-es';
 
 import type { FormInstance, FormRules } from 'element-plus';
 
 const FormRef = ref<FormInstance>();
+const cacheFormDataKey = 'login-form-data';
 
 interface FormDataType {
   username: string;
   password: string;
   cacheFormData: boolean;
 }
-const formData = reactive({
+
+const cacheFormData = localGet(cacheFormDataKey);
+const defaultFormData = {
   username: '',
   password: '',
   cacheFormData: false
-}) as FormDataType;
+};
+const formData = reactive(
+  _assign(defaultFormData, cacheFormData)
+) as FormDataType;
 
 const formRules = reactive({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -98,8 +106,13 @@ function submitForm() {
   FormRef.value.validate((valid) => {
     if (valid) {
       const userStore = useUserStore();
-      const { username, password } = formData;
+      const { username, password, cacheFormData } = formData;
       userStore.login({ username, password }).then(() => {
+        if (cacheFormData) {
+          localSet(cacheFormDataKey, formData);
+        } else {
+          localRemove(cacheFormDataKey);
+        }
         router.push('/');
       });
     }
