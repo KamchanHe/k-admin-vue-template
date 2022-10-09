@@ -1,17 +1,29 @@
+const config = {
+  prefix: 'k-admin_0.0.1'
+};
+
+const addPrefix = (key: string) => {
+  const prefix = config.prefix ? `${config.prefix}_` : '';
+  return prefix + key;
+};
+
 export const localGet = <T>(name: string): T | null => {
+  const key = addPrefix(name);
   try {
-    return JSON.parse(localStorage.getItem(name) || '');
+    return JSON.parse(localStorage.getItem(key) || '');
   } catch (error) {
     return null;
   }
 };
 
 export const localSet = <T>(name: string, val: T) => {
-  localStorage.setItem(name, JSON.stringify(val));
+  const key = addPrefix(name);
+  localStorage.setItem(key, JSON.stringify(val));
 };
 
 export const localRemove = (name: string) => {
-  localStorage.removeItem(name);
+  const key = addPrefix(name);
+  localStorage.removeItem(key);
 };
 
 export const localClear = () => {
@@ -19,19 +31,22 @@ export const localClear = () => {
 };
 
 export const sessionGet = <T>(name: string): T | null => {
+  const key = addPrefix(name);
   try {
-    return JSON.parse(sessionStorage.getItem(name) || '');
+    return JSON.parse(sessionStorage.getItem(key) || '');
   } catch (error) {
     return null;
   }
 };
 
 export const sessionSet = <T>(name: string, val: T) => {
-  sessionStorage.setItem(name, JSON.stringify(val));
+  const key = addPrefix(name);
+  sessionStorage.setItem(key, JSON.stringify(val));
 };
 
 export const sessionRemove = (name: string) => {
-  sessionStorage.removeItem(name);
+  const key = addPrefix(name);
+  sessionStorage.removeItem(key);
 };
 
 export const sessionClear = () => {
@@ -42,7 +57,9 @@ export default {
   localGet,
   localSet,
   localRemove,
+  localClear,
   sessionGet,
   sessionSet,
-  sessionRemove
+  sessionRemove,
+  sessionClear
 };
