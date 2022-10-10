@@ -47,11 +47,15 @@ module.exports = {
     semi: ['error', 'always'],
     'no-param-reassign': 'off',
     'no-console': 'off',
+    'no-restricted-syntax': 'off',
     // vue
     'vue/multi-word-component-names': 'off',
     // import
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'import/no-cycle': 'off'
+    'import/no-cycle': 'off',
+    // typescript
+    '@typescript-eslint/no-this-alias': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
   }
 };

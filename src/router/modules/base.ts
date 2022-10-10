@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
+import CommonLayout from '@/layout/common/index.vue';
 
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -28,6 +29,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/',
+    component: CommonLayout,
     redirect: '/dashboard',
     children: [
       {
@@ -35,6 +37,16 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/dashboard/index.vue'),
         name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+      },
+      {
+        name: '404',
+        path: '/test-404',
+        component: () => import('@/views/error-page/404.vue')
+      },
+      {
+        name: '401',
+        path: '/test-401',
+        component: () => import('@/views/error-page/401.vue')
       }
     ]
   }

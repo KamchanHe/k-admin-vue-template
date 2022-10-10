@@ -1,20 +1,13 @@
+import type { SettingsState } from '@/types/store/settings';
 import SidebarLogo from '@/assets/images/sidebarLogo.png';
 
-interface DefaultSettings {
+interface SettingsType extends SettingsState {
   title: string;
   logo: string;
-  theme: string;
-  showSettings: boolean;
-  tagsView: boolean;
-  fixedHeader: boolean;
-  sidebarLogo: boolean;
-  breadCrumb: boolean;
-  navigationType: string;
-  sizeSelect: boolean;
   errorLog: string | string[];
 }
 
-const defaultSettings: DefaultSettings = {
+const defaultSettings: SettingsType = {
   title: 'K Admin Vue',
   logo: SidebarLogo,
   theme: '#409eff',
