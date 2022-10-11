@@ -4,7 +4,7 @@
   transition: opacity 0.28s;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-active {
   opacity: 0;
 }
@@ -15,7 +15,7 @@
   transition: all 0.5s;
 }
 
-.fade-transform-enter {
+.fade-transform-enter-from {
   opacity: 0;
   transform: translateX(-30px);
 }
@@ -26,21 +26,18 @@
 }
 
 /* breadcrumb transition */
-.breadcrumb-enter-active,
-.breadcrumb-leave-active {
-  transition: all 0.5s;
+.breadcrumb-transform-move,
+.breadcrumb-transform-enter-active,
+.breadcrumb-transform-leave-active {
+  transition: all 0.5s ease;
 }
 
-.breadcrumb-enter,
-.breadcrumb-leave-active {
+.breadcrumb-transform-enter-from,
+.breadcrumb-transform-leave-to {
   opacity: 0;
-  transform: translateX(20px);
+  transform: translateX(30px);
 }
 
-.breadcrumb-move {
-  transition: all 0.5s;
-}
-
-.breadcrumb-leave-active {
+.breadcrumb-transform-leave-active {
   position: absolute;
 }

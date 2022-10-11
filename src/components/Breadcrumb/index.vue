@@ -1,6 +1,6 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator-class="el-icon-arrow-right">
-    <transition-group name="breadcrumb">
+  <el-breadcrumb class="app-breadcrumb" separator="/">
+    <transition-group name="breadcrumb-transform">
       <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
         <span
           v-if="

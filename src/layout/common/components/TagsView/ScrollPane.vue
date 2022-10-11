@@ -42,7 +42,7 @@ function moveToTarget(currentTag = {}) {
   const $containerWidth = $container.offsetWidth;
   const $scrollWrapper = scrollWrapper.value;
   const tagListDom = document.querySelectorAll(
-    '.tags-view__item'
+    '.tags-view-item'
   ) as NodeListOf<HTMLElement>;
 
   let firstTag = null;
