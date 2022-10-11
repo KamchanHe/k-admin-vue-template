@@ -7,17 +7,20 @@ declare module 'vue-router' {
   // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-shadow
   interface _RouteRecordBase {
     parentPath?: string;
-    meta?: {
-      hidden?: boolean;
-      alwaysShow?: boolean;
-      roles?: RolesType;
-      title?: string;
-      icon?: string;
-      affix?: boolean;
-      noCache?: boolean;
-      breadcrumb?: boolean;
-      activeMenu?: string;
-    };
+    meta?: RouteMeta;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-shadow
+  interface RouteMeta {
+    hidden?: boolean;
+    alwaysShow?: boolean;
+    roles?: RolesType;
+    title?: string;
+    icon?: string;
+    affix?: boolean;
+    noCache?: boolean;
+    breadcrumb?: boolean;
+    activeMenu?: string;
   }
 }
 

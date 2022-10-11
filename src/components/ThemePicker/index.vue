@@ -17,10 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingStore } from '@/store';
+import { useSettingsStore } from '@/store';
 import { changeTheme } from '@/utils/theme';
 
-const settingsStore = useSettingStore();
+const settingsStore = useSettingsStore();
 const defaultTheme = computed(() => settingsStore.theme);
 const theme = ref('');
 theme.value = defaultTheme.value;

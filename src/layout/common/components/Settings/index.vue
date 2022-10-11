@@ -80,9 +80,9 @@
 
 <script setup lang="ts">
 import ThemePicker from '@/components/ThemePicker/index.vue';
-import { useSettingStore } from '@/store';
+import { useSettingsStore } from '@/store';
 
-const settingsStore = useSettingStore();
+const settingsStore = useSettingsStore();
 
 const state = reactive({
   fixedHeader: settingsStore.fixedHeader,

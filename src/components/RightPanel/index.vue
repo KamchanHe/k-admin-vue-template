@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { addClass, removeClass } from '@/utils';
-import { useSettingStore } from '@/store';
+import { useSettingsStore } from '@/store';
 
 defineProps({
   buttonTop: {
@@ -28,7 +28,7 @@ defineProps({
   }
 });
 
-const settingsStore = useSettingStore();
+const settingsStore = useSettingsStore();
 const theme = computed(() => settingsStore.theme);
 const show = ref(false);
 

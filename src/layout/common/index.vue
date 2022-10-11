@@ -6,7 +6,7 @@
       @click="handleClickOutside"
     />
 
-    <!-- <Sidebar class="sidebar-container" />-->
+    <Sidebar class="sidebar-container" />
 
     <div :class="{ 'has-tags-view': needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
@@ -26,18 +26,19 @@
 <script setup lang="ts">
 import RightPanel from '@/components/RightPanel/index.vue';
 
-import { useAppStore, useSettingStore } from '@/store';
+import { useAppStore, useSettingsStore } from '@/store';
 import { useWindowSize } from '@vueuse/core';
 import Settings from './components/Settings/index.vue';
 import AppMain from './components/AppMain/index.vue';
 import NavBar from './components/NavBar/index.vue';
 import TagsView from './components/TagsView/index.vue';
+import Sidebar from './components/Sidebar/index.vue';
 
 const { width } = useWindowSize();
 const WIDTH = 992;
 
 const appStore = useAppStore();
-const settingsStore = useSettingStore();
+const settingsStore = useSettingsStore();
 
 const sidebar = computed(() => appStore.sidebar);
 const device = computed(() => appStore.device);
@@ -101,7 +102,7 @@ export default {
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - #{$sidebar-width});
+  width: calc(100% - #{$v-sidebar-width});
   transition: width 0.28s;
 }
 

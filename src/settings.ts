@@ -1,5 +1,5 @@
 import type { SettingsState } from '@/types/store/settings';
-import SidebarLogo from '@/assets/images/sidebarLogo.png';
+import SidebarLogo from '@/assets/images/sidebar-logo.png';
 
 interface SettingsType extends SettingsState {
   title: string;

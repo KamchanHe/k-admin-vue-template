@@ -61,13 +61,13 @@ import {
   useAppStore,
   useUserStore,
   useTagsViewStore,
-  useSettingStore
+  useSettingsStore
 } from '@/store';
 
 const appStore = useAppStore();
 const userStore = useUserStore();
 const tagsViewStore = useTagsViewStore();
-const settingsStore = useSettingStore();
+const settingsStore = useSettingsStore();
 
 const route = useRoute();
 const router = useRouter();
