@@ -1,19 +1,14 @@
 <script lang="ts">
-import { h } from 'vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Redirect',
-  setup() {
-    const route = useRoute();
-    const router = useRouter();
-
-    onBeforeMount(() => {
-      const { params, query } = route;
-      const { path } = params;
-      router.replace({ path: `/${path}`, query });
-    });
-
-    return () => h('div');
-  }
-};
+  created() {
+    const { params, query } = useRoute();
+    const { path } = params;
+    useRouter().replace({ path: `/${path}`, query });
+  },
+  // eslint-disable-next-line vue/require-render-return
+  render() {}
+});
 </script>
