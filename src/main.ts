@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import router from '@/router';
 import { registerIcons } from '@/utils/icon';
+import { setupGlobDirectives } from '@/directives';
 import App from './App.vue';
 import '@/permission';
 
@@ -20,4 +21,5 @@ registerIcons(app);
 const pinia = createPinia();
 app.use(pinia);
 app.use(router);
+setupGlobDirectives(app);
 app.mount('#app');

@@ -4,5 +4,5 @@ export interface UserStoreType {
   token: string;
   nickname: string;
   avatar: string;
-  roles: RolesState;
+  roles: RolesType;
 }
