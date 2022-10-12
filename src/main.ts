@@ -7,7 +7,6 @@ import '@/permission';
 
 import 'normalize.css/normalize.css';
 import '@/style/index.scss';
-import '@/style/v-sidebar.scss';
 import 'element-plus/theme-chalk/el-loading.css';
 import 'element-plus/theme-chalk/el-message.css';
 import 'element-plus/theme-chalk/el-message-box.css';

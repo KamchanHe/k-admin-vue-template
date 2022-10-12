@@ -6,7 +6,7 @@
       @click="handleClickOutside"
     />
 
-    <Sidebar class="sidebar-container" />
+    <Sidebar v-if="navigationType !== 'top'" />
 
     <div :class="{ 'has-tags-view': needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
@@ -52,7 +52,7 @@ const dynamicClass = computed(() => ({
   'open-sidebar': sidebar.value.opened,
   'without-animation': sidebar.value.withoutAnimation,
   mobile: device.value === 'mobile',
-  'top-side': navigationType.value === 'top'
+  'top-sidebar': navigationType.value === 'top'
 }));
 
 watchEffect(() => {
@@ -74,6 +74,11 @@ export default {
   name: 'CommonLayout'
 };
 </script>
+
+<style lang="scss">
+@import '@/style/v-sidebar';
+@import '@/style/h-sidebar';
+</style>
 
 <style lang="scss" scoped>
 .app-wrapper {
@@ -111,7 +116,7 @@ export default {
 }
 
 .mobile .fixed-header,
-.top-side .fixed-header {
+.top-sidebar .fixed-header {
   width: 100%;
 }
 </style>

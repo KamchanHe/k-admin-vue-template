@@ -12,6 +12,14 @@
         v-if="showBreadCrumb && navigationType === 'left'"
         class="breadcrumb-container"
       />
+
+      <TopSidebar class="navigation-container" v-if="navigationType === 'top'">
+        <hamburger
+          :is-active="sidebar.opened"
+          class="hamburger-container"
+          @toggleClick="toggleSideBar"
+        />
+      </TopSidebar>
     </div>
 
     <div class="right-menu">
@@ -63,6 +71,7 @@ import {
   useTagsViewStore,
   useSettingsStore
 } from '@/store';
+import TopSidebar from '../Sidebar/TopSidebar.vue';
 
 const appStore = useAppStore();
 const userStore = useUserStore();
