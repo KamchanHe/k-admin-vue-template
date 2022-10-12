@@ -33,7 +33,11 @@
             </template>
           </el-menu-item>
         </SidebarLink>
-        <el-sub-menu v-if="limitIndex >= 0" index="more">
+        <el-sub-menu
+          v-if="limitIndex >= 0"
+          index="more"
+          popper-class="h-sidebar-popper"
+        >
           <template #title>
             <k-icon name="el-icon-more"></k-icon>
             <span>更多</span>

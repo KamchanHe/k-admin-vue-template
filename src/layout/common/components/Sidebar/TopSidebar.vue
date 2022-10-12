@@ -40,6 +40,7 @@
             :key="route.path"
             :base-path="route.path"
             :is-collapse="isCollapse"
+            popper-class="h-sidebar-popper"
           />
         </el-sub-menu>
       </el-menu>
