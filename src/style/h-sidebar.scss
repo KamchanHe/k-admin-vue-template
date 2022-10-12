@@ -1,4 +1,5 @@
 .top-sidebar-container,
+.mixture-sidebar-container,
 .h-sidebar-popper {
   .el-menu-item,
   .el-sub-menu,
@@ -7,7 +8,8 @@
   }
 }
 
-.top-sidebar-container {
+.top-sidebar-container,
+.mixture-sidebar-container {
   .el-menu {
     width: 100% !important;
     height: 100%;
@@ -15,6 +17,8 @@
   }
 
   .el-sub-menu__title {
+    border-bottom: none !important;
+
     & > span {
       padding-right: 18px;
     }
@@ -28,7 +32,7 @@
   .el-menu--collapse {
     & > .el-sub-menu {
       & > .el-sub-menu__title {
-        &.el-sub-menu__icon-arrow {
+        .el-sub-menu__icon-arrow {
           display: block;
         }
       }
@@ -46,7 +50,8 @@
 }
 
 .hide-sidebar {
-  .top-sidebar-container {
+  .top-sidebar-container,
+  .mixture-sidebar-container {
     .el-menu--collapse {
       .el-sub-menu > .el-sub-menu__title > span {
         display: inline-block;
@@ -70,13 +75,15 @@
 }
 
 /* stylelint-disable no-duplicate-selectors */
-.top-sidebar-container {
+.top-sidebar-container,
+.mixture-sidebar-container {
   .el-menu {
     background-color: $h-sidebar-bg;
   }
 }
 
 .top-sidebar-container,
+.mixture-sidebar-container,
 .h-sidebar-popper {
   .el-menu-item {
     color: $h-menu-text;

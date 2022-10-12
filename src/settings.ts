@@ -16,7 +16,7 @@ const defaultSettings: SettingsType = {
   fixedHeader: true,
   sidebarLogo: true,
   breadCrumb: true,
-  navigationType: 'left', // left/top/mix
+  navigationType: 'left', // left/top/mixture
   sizeSelect: true,
   errorLog: ['development']
 };

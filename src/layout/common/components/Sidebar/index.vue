@@ -35,7 +35,7 @@ const permissionStore = usePermissionStore();
 
 const route = useRoute();
 const routes = computed<RouteRecordRaw[]>(() => {
-  if (settingsStore.navigationType === 'mix') {
+  if (settingsStore.navigationType === 'mixture') {
     return permissionStore.childrenRoutes;
   }
   return permissionStore.routes;

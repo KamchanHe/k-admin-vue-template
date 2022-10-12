@@ -113,7 +113,7 @@ const navigationTypeState: { label: string; value: string }[] = reactive([
   },
   {
     label: 'Mix Side',
-    value: 'mix'
+    value: 'mixture'
   }
 ]);
 
@@ -218,7 +218,7 @@ function sizeSelectChange(value: boolean) {
       }
     }
 
-    &-mix {
+    &-mixture {
       .main-block {
         width: 100%;
         height: 30%;

@@ -20,6 +20,11 @@
           @toggleClick="toggleSideBar"
         />
       </TopSidebar>
+
+      <MixtureSidebar
+        class="navigation-container"
+        v-if="navigationType === 'mixture'"
+      ></MixtureSidebar>
     </div>
 
     <div class="right-menu">
@@ -72,6 +77,7 @@ import {
   useSettingsStore
 } from '@/store';
 import TopSidebar from '../Sidebar/TopSidebar.vue';
+import MixtureSidebar from '../Sidebar/MixtureSidebar.vue';
 
 const appStore = useAppStore();
 const userStore = useUserStore();
