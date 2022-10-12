@@ -92,19 +92,6 @@
     }
 
     .el-menu--vertical {
-      .sub-menu-title-no-drop-down {
-        position: relative;
-        padding: 0 !important;
-
-        .el-menu-tooltip__trigger {
-          padding: 0 !important;
-
-          .icon {
-            margin-left: 18px;
-          }
-        }
-      }
-
       .el-sub-menu {
         overflow: hidden;
       }
@@ -128,6 +115,12 @@
   .main-container,
   .sidebar-container {
     transition: none !important;
+  }
+}
+
+.top-sidebar {
+  .main-container {
+    margin-left: 0;
   }
 }
 
@@ -161,49 +154,55 @@
   background-color: $line-bg-color;
 }
 
-.el-menu {
-  background-color: $v-sidebar-bg;
-}
-
-.el-menu-item {
-  color: $v-menu-text;
-  background-color: $v-menu-bg;
-
-  &.is-active {
-    position: relative;
-    color: $v-menu-active-text;
-    background-color: $v-menu-active-bg;
-
-    &::after {
-      @include menu-active-line($v-menu-active-line-bg);
-    }
-  }
-
-  &:hover {
-    color: $v-menu-hover-text;
-    background-color: $v-menu-hover-bg;
+/* stylelint-disable no-duplicate-selectors */
+.sidebar-container {
+  .el-menu {
+    background-color: $v-sidebar-bg;
   }
 }
 
-.el-sub-menu {
-  .el-sub-menu__title {
-    color: $v-sub-menu-text;
-    background-color: $v-sub-menu-bg;
+.sidebar-container,
+.v-sidebar-popper {
+  .el-menu-item {
+    color: $v-menu-text;
+    background-color: $v-menu-bg;
 
-    &:hover {
-      color: $v-sub-menu-hover-text;
-      background-color: $v-sub-menu-hover-bg;
-    }
-  }
-
-  &.is-active {
-    > .el-sub-menu__title {
+    &.is-active {
       position: relative;
-      color: $v-sub-menu-active-text;
-      background-color: $v-sub-menu-active-bg;
+      color: $v-menu-active-text;
+      background-color: $v-menu-active-bg;
 
       &::after {
-        @include menu-active-line($v-sub-menu-active-line-bg);
+        @include menu-active-line($v-menu-active-line-bg);
+      }
+    }
+
+    &:hover {
+      color: $v-menu-hover-text;
+      background-color: $v-menu-hover-bg;
+    }
+  }
+
+  .el-sub-menu {
+    .el-sub-menu__title {
+      color: $v-sub-menu-text;
+      background-color: $v-sub-menu-bg;
+
+      &:hover {
+        color: $v-sub-menu-hover-text;
+        background-color: $v-sub-menu-hover-bg;
+      }
+    }
+
+    &.is-active {
+      > .el-sub-menu__title {
+        position: relative;
+        color: $v-sub-menu-active-text;
+        background-color: $v-sub-menu-active-bg;
+
+        &::after {
+          @include menu-active-line($v-sub-menu-active-line-bg);
+        }
       }
     }
   }

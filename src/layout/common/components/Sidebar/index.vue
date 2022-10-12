@@ -1,8 +1,9 @@
 <template>
-  <div :class="{ 'has-logo': showLogo }">
+  <div :class="{ 'has-logo': showLogo, 'sidebar-container': true }">
     <SidebarLogo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar>
       <el-menu
+        class="v-sidebar-menu"
         :default-active="activeMenu"
         :collapse="isCollapse"
         :unique-opened="false"
@@ -15,6 +16,7 @@
           :key="route.path"
           :base-path="route.path"
           :is-collapse="isCollapse"
+          popper-class="v-sidebar-popper"
         />
       </el-menu>
     </el-scrollbar>

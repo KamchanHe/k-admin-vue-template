@@ -5,10 +5,7 @@
         v-if="onlyOneChild.meta"
         :to="resolvePath(onlyOneChild.path)"
       >
-        <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
-          :class="{ 'sub-menu-title-no-drop-down': !isNest }"
-        >
+        <el-menu-item :index="resolvePath(onlyOneChild.path)">
           <k-icon
             v-if="onlyOneChild.meta && onlyOneChild.meta.icon"
             :name="onlyOneChild.meta.icon"
@@ -19,7 +16,11 @@
         </el-menu-item>
       </SidebarLink>
     </template>
-    <el-sub-menu v-else :index="resolvePath(item.path)">
+    <el-sub-menu
+      v-else
+      :index="resolvePath(item.path)"
+      :popper-class="popperClass"
+    >
       <template #title>
         <k-icon
           v-if="item.meta && item.meta.icon"
@@ -32,7 +33,6 @@
         v-for="child in item.children"
         :key="child.path"
         :item="child"
-        :is-nest="true"
         :base-path="resolvePath(child.path)"
         class="nest-menu"
       />
@@ -48,8 +48,8 @@ import SidebarLink from './Link.vue';
 
 interface PropsState {
   item: RouteRecordRaw;
-  isNest?: boolean;
   basePath?: string;
+  popperClass?: string;
 }
 const props = withDefaults(defineProps<PropsState>(), {});
 
