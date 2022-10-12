@@ -1,11 +1,11 @@
-import { App, Directive, DirectiveBinding, nextTick } from 'vue';
+import type { App, Directive, DirectiveBinding } from 'vue';
 
-import useStore from '@/store';
+import { useUserStore } from '@/store';
 
 function checkPermission(el: Element, binding: DirectiveBinding) {
   const { value } = binding;
-  const { user } = useStore();
-  const { roles } = user;
+  const userStore = useUserStore();
+  const { roles } = userStore;
 
   if (value && value instanceof Array) {
     if (value.length > 0) {
@@ -17,7 +17,7 @@ function checkPermission(el: Element, binding: DirectiveBinding) {
       if (!hasPermission) {
         nextTick(() => {
           el.parentNode?.removeChild(el);
-        });
+        }).then(() => {});
       }
     }
   } else {
