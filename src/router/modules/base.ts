@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import CommonLayout from '@/layout/common/index.vue';
-import { nestedRoutes } from '@/router/modules/nested';
+import { nestedRoutes } from './nested';
+import { exampleRoutes } from './example';
 
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -93,6 +94,9 @@ export const constantRoutes: RouteRecordRaw[] = [
   }
 ];
 
-export const asyncRoutes: RouteRecordRaw[] = [...nestedRoutes];
+export const asyncRoutes: RouteRecordRaw[] = [
+  ...nestedRoutes,
+  ...exampleRoutes
+];
 
 export default {};
