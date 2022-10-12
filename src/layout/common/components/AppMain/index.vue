@@ -29,6 +29,7 @@ const cachedViews = computed(() => tagsViewStore.cachedViews);
 }
 
 .fixed-header + .app-main {
+  min-height: 100vh;
   padding-top: 50px;
 }
 
@@ -39,6 +40,7 @@ const cachedViews = computed(() => tagsViewStore.cachedViews);
   }
 
   .fixed-header + .app-main {
+    min-height: 100vh;
     padding-top: 84px;
   }
 }
