@@ -92,6 +92,14 @@
     }
 
     .el-menu--vertical {
+      .el-menu-tooltip__trigger {
+        padding: 0 !important;
+
+        .icon {
+          margin-left: 18px;
+        }
+      }
+
       .el-sub-menu {
         overflow: hidden;
       }
