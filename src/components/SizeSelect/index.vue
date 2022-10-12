@@ -1,7 +1,7 @@
 <template>
   <el-dropdown class="size-select" trigger="click" @command="handleSetSize">
     <div class="size-select-icon">
-      <k-icon name="local-size" />
+      <k-icon name="local-icon-size" />
     </div>
     <template #dropdown>
       <el-dropdown-menu>
