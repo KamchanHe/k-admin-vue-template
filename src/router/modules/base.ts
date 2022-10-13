@@ -96,7 +96,8 @@ export const constantRoutes: RouteRecordRaw[] = [
 
 export const asyncRoutes: RouteRecordRaw[] = [
   ...nestedRoutes,
-  ...exampleRoutes
+  ...exampleRoutes,
+  { path: '/:pathMatch(.)', redirect: '/404', meta: { hidden: true } }
 ];
 
 export default {};

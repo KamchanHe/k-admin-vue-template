@@ -37,7 +37,7 @@ import { isFunction as _isFunction } from 'lodash-es';
 type CommonFunctionType = () => void;
 
 interface Props {
-  visible: boolean;
+  modelValue: boolean;
   title?: string;
   closeOnClickModal?: boolean;
   closeOnPressEscape?: boolean;
@@ -59,7 +59,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  visible: false,
+  modelValue: false,
   title: '',
   closeOnClickModal: false,
   closeOnPressEscape: false,
@@ -78,14 +78,14 @@ const props = withDefaults(defineProps<Props>(), {
   maxHeight: 'auto'
 });
 
-const emits = defineEmits(['cancel', 'confirm', 'update:visible']);
+const emits = defineEmits(['cancel', 'confirm', 'update:modelValue']);
 
 const dialogVisible = computed({
   get() {
-    return props.visible;
+    return props.modelValue;
   },
   set(val) {
-    emits('update:visible', val);
+    emits('update:modelValue', val);
   }
 });
 
@@ -121,26 +121,24 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.k-dialog {
-  :deep(.el-dialog) {
-    display: flex;
-    flex-direction: column;
-    width: var(--width);
-    min-width: var(--min-width);
-    max-width: var(--max-width);
-    height: var(--height);
-    min-height: var(--min-height);
-    max-height: var(--max-height);
-    margin: 50px auto 0 !important;
-    overflow: hidden;
-    border-radius: 5px;
+<style lang="scss">
+.k-dialog.el-dialog {
+  display: flex;
+  flex-direction: column;
+  width: var(--width) !important;
+  min-width: var(--min-width) !important;
+  max-width: var(--max-width) !important;
+  height: var(--height) !important;
+  min-height: var(--min-height) !important;
+  max-height: var(--max-height) !important;
+  margin: 50px auto 0 !important;
+  overflow: hidden;
+  border-radius: 5px;
 
-    .el-dialog__body {
-      flex: 1;
-      padding-top: 20px;
-      overflow: hidden;
-    }
+  .el-dialog__body {
+    flex: 1;
+    padding-top: 20px;
+    overflow: hidden;
   }
 }
 </style>
