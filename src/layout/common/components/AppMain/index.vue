@@ -24,24 +24,27 @@ const cachedViews = computed(() => tagsViewStore.cachedViews);
   width: 100%;
 
   /* 50 = navbar = 50  */
+  height: calc(100vh - 50px);
   min-height: calc(100vh - 50px);
-  overflow: hidden;
 }
 
 .fixed-header + .app-main {
   min-height: 100vh;
   padding-top: 50px;
+  overflow-y: auto;
 }
 
 .has-tags-view {
   .app-main {
     /* 84 = navbar + tags-view = 50 + 34 */
+    height: calc(100vh - 84px);
     min-height: calc(100vh - 84px);
   }
 
   .fixed-header + .app-main {
     min-height: 100vh;
     padding-top: 84px;
+    overflow-y: auto;
   }
 }
 </style>

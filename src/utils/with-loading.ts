@@ -58,10 +58,15 @@ export const withLoading = <Q, S>(
       const targetResult = fn(...args);
       const isPromise = targetResult instanceof Promise;
       if (isPromise) {
-        return targetResult.then((res) => {
-          hideLoading();
-          return res;
-        });
+        return targetResult
+          .then((res) => {
+            hideLoading();
+            return res;
+          })
+          .catch((err) => {
+            hideLoading();
+            throw err;
+          });
       }
       hideLoading();
       return new Promise((resolve) => {
