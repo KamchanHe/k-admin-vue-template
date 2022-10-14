@@ -18,14 +18,12 @@
     }"
   >
     <slot />
-    <template #footer>
+    <template v-if="showAction && (!hideCancel || !hideConfirm)" #footer>
       <slot name="footer">
-        <div v-if="showAction && (!hideCancel || !hideConfirm)">
-          <el-button v-show="!hideCancel" @click="cancel">取 消</el-button>
-          <el-button v-show="!hideConfirm" type="primary" @click="confirm">
-            确 定
-          </el-button>
-        </div>
+        <el-button v-show="!hideCancel" @click="cancel">取 消</el-button>
+        <el-button v-show="!hideConfirm" type="primary" @click="confirm">
+          确 定
+        </el-button>
       </slot>
     </template>
   </el-dialog>
