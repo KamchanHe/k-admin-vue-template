@@ -1,6 +1,5 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import qs from 'qs';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getToken } from '@/utils/auth';
 import { useUserStore } from '@/store';
@@ -74,6 +73,15 @@ class Service {
     return this.instance.request(config);
   }
 
+  /**
+   * config.paramsSerializer = {
+   *   encode: (params) => qs.stringify(params, { arrayFormat: 'repeat' })
+   * }
+   * qs.stringify({ a: ['b', 'c'] }, { arrayFormat: 'indices' }) ==> config.paramsSerializer.indexes = true // 'a[0]=b&a[1]=c'
+   * qs.stringify({ a: ['b', 'c'] }, { arrayFormat: 'brackets' }) ==> config.paramsSerializer.indexes = false// 'a[]=b&a[]=c' // **Default**
+   * qs.stringify({ a: ['b', 'c'] }, { arrayFormat: 'repeat' }) ==> config.paramsSerializer.indexes = null// 'a=b&a=c'
+   * qs.stringify({ a: ['b', 'c'] }, { arrayFormat: 'comma' }) ==> **not supported** // 'a=b,c'
+   */
   public get<Q, S>(
     url: string,
     params?: Q,
@@ -82,9 +90,7 @@ class Service {
     return this.instance.get(url, {
       params,
       paramsSerializer: {
-        encode: (parameter) => {
-          return qs.stringify(parameter, { arrayFormat: 'repeat' });
-        }
+        indexes: null
       },
       ...extraConfig
     });
