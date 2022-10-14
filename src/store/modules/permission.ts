@@ -50,7 +50,7 @@ const usePermissionStore = defineStore({
       return new Promise<RouteRecordRaw[]>((resolve) => {
         let accessedRoutes;
         if (roles.includes('admin')) {
-          accessedRoutes = asyncRoutes || [];
+          accessedRoutes = asyncRoutes;
         } else {
           accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
         }
