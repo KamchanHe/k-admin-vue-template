@@ -181,7 +181,7 @@ export function BiMapConversion<T>(targetData: T, mapData: BiMap) {
     }) as T;
   }
   if (_isObject(targetData)) {
-    const resultItem: Record<number | string, T[keyof T]> = {};
+    const resultItem: Record<string | number, T[keyof T]> = {};
     for (const key in targetData) {
       if (Object.prototype.hasOwnProperty.call(targetData, key)) {
         const val = mapData.get(key);
@@ -192,7 +192,7 @@ export function BiMapConversion<T>(targetData: T, mapData: BiMap) {
         }
       }
     }
-    return resultItem;
+    return resultItem as T;
   }
   let key;
   if (_isNumber(targetData)) {
@@ -203,5 +203,5 @@ export function BiMapConversion<T>(targetData: T, mapData: BiMap) {
     key = '';
   }
   const val = mapData.get(key);
-  return val || targetData;
+  return (val || targetData) as T;
 }

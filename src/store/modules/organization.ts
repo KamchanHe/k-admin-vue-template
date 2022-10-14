@@ -26,7 +26,7 @@ const useOrganizationStore = defineStore({
           .then((res) => {
             const { data } = res;
             const biMapData = BiMapConversion(
-              data,
+              data || [],
               $tenantItemMap
             ) as typeof data;
             const result = _map(biMapData, (item) => {

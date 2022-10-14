@@ -61,7 +61,7 @@
       >
         <div class="avatar-wrapper">
           <el-avatar shape="square" :src="avatar" icon="ElIconUserFilled" />
-          <span class="avatar-wrapper-nickname">{{ nickname }}</span>
+          <span class="avatar-wrapper-username">{{ username }}</span>
           <k-icon
             name="el-icon-caret-bottom"
             v-show="false"
@@ -111,7 +111,7 @@ const router = useRouter();
 const sidebar = computed(() => appStore.sidebar);
 const device = computed(() => appStore.device);
 const avatar = computed(() => userStore.avatar);
-const nickname = computed(() => userStore.nickname);
+const username = computed(() => userStore.username);
 const showBreadCrumb = computed(() => settingsStore.breadCrumb);
 const showSizeSelect = computed(() => settingsStore.sizeSelect);
 const navigationType = computed(() => settingsStore.navigationType);
@@ -242,7 +242,7 @@ ul {
         align-items: center;
         height: 100%;
 
-        &-nickname {
+        &-username {
           margin-left: 10px;
           overflow: hidden;
           white-space: nowrap;

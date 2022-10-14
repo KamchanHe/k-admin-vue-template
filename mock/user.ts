@@ -12,21 +12,27 @@ const tokens: TokensType = {
 
 const users: UsersType = {
   'admin-token': {
-    roles: ['admin'],
-    avatar:
-      'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    nickname: 'Super Admin'
+    id: '1',
+    account: 'admin',
+    authorIds: ['admin'],
+    icon: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    name: 'Super Admin',
+    code: '001',
+    mobile: '13300000000'
   },
   'editor-token': {
-    roles: ['editor'],
-    avatar:
-      'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    nickname: 'Normal Editor'
+    id: '2',
+    account: 'editor',
+    authorIds: ['editor'],
+    icon: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    name: 'Normal Editor',
+    code: '002',
+    mobile: '18900000000'
   }
 };
 
 const login: MockMethodType = {
-  url: '/k-admin-template/user/login',
+  url: '/k-admin-template/portal/login',
   method: 'post',
   response: (config) => {
     const { username } = config.body;
@@ -46,7 +52,7 @@ const login: MockMethodType = {
 };
 
 const getUserInfo: MockMethodType = {
-  url: '/k-admin-template/user/info',
+  url: '/k-admin-template/sys/user/info',
   method: 'get',
   response: (config) => {
     const { token } = config.query;
@@ -66,7 +72,7 @@ const getUserInfo: MockMethodType = {
 };
 
 const logout = {
-  url: '/k-admin-template/user/logout',
+  url: '/k-admin-template/portal/logout',
   method: 'post',
   response: () => {
     return {

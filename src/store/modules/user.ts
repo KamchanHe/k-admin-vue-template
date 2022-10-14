@@ -8,12 +8,14 @@ import {
 import { resetRouter } from '@/router';
 import type { UserInfoResponse } from '@/types/api/user';
 import type { UserStoreType } from '@/types/store/user';
+import { BiMapConversion } from '@/utils/bi-map';
+import { $userInfoMap } from '@/constant/bi-map/user';
 
 const useUserStore = defineStore({
   id: 'user',
   state: (): UserStoreType => ({
     token: authGetToken(),
-    nickname: '',
+    username: '',
     avatar: '',
     roles: []
   }),
@@ -52,16 +54,17 @@ const useUserStore = defineStore({
         })
           .then((res) => {
             const { data } = res;
-            const { nickname, avatar } = data || {};
-            let { roles } = data;
+            const biMapData = BiMapConversion(data || {}, $userInfoMap);
+            const { username, avatar } = biMapData || {};
+            let { roles } = biMapData;
             if (!roles || roles.length <= 0) {
               roles = ['public'];
-              data.roles = ['public'];
+              biMapData.roles = ['public'];
             }
-            this.nickname = nickname;
-            this.avatar = avatar;
+            this.username = username || '';
+            this.avatar = avatar || '';
             this.roles = roles;
-            return resolve(data);
+            return resolve(biMapData);
           })
           .catch((error) => {
             reject(error);

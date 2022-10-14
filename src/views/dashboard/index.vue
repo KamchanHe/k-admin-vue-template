@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">nickname: {{ nickname }}</div>
+    <div class="dashboard-text">username: {{ username }}</div>
     <div class="dashboard-text">
       roles: <span v-for="role in roles" :key="role">{{ role }}</span>
     </div>
@@ -17,7 +17,7 @@ import { useUserStore } from '@/store';
 
 const userStore = useUserStore();
 
-const nickname = computed(() => userStore.nickname);
+const username = computed(() => userStore.username);
 const roles = computed(() => userStore.roles);
 const inputValue = ref('');
 </script>

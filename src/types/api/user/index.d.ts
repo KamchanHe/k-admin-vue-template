@@ -14,8 +14,11 @@ export interface UserInfoRequest {
 }
 
 export interface UserInfoResponse {
-  token: string;
-  nickname: string;
-  avatar: string;
+  id: string;
+  account: string;
   roles: RolesType;
+  username?: string;
+  avatar?: string;
+  userCode?: string;
+  phone?: string;
 }

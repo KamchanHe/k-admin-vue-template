@@ -2,7 +2,7 @@ export type RolesType = (string | number)[];
 
 export interface UserStoreType {
   token: string;
-  nickname: string;
+  username: string;
   avatar: string;
   roles: RolesType;
 }

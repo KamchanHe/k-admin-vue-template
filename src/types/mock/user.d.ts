@@ -5,9 +5,13 @@ export interface TokensType {
 }
 
 export interface UsersType {
-  [keu: string]: {
-    roles: (string | number)[];
-    avatar: string;
-    nickname: string;
+  [key: string]: {
+    id: string;
+    account: string;
+    authorIds: (string | number)[];
+    icon?: string;
+    name?: string;
+    code?: string;
+    mobile?: string;
   };
 }
