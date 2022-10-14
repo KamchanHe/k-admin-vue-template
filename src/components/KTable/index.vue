@@ -28,7 +28,6 @@
       ></CheckboxColumn>
       <template v-for="item in filterHeaderData" :key="item.prop">
         <el-table-column
-          v-if="item.show"
           :prop="item.prop"
           :type="item.type"
           :label="item.label"
@@ -287,6 +286,39 @@ function showTableColumnConfiguration() {
 function tableHeaderUpdate(data: TableHeaderType[]) {
   emits('update:table-header', data);
 }
+
+const CheckboxColumnRef = ref();
+function clearSelection() {
+  CheckboxColumnRef.value?.clearSelection();
+  KTableRef.value?.clearSelection();
+}
+
+function setSelection(list: RowType[] = []) {
+  CheckboxColumnRef.value?.setSelection(list, true);
+  list.forEach((row) => {
+    KTableRef.value?.toggleRowSelection(row, true);
+  });
+}
+
+function toggleRowSelection(row: RowType, flag?: boolean) {
+  CheckboxColumnRef.value?.toggleRowSelection(row, flag);
+  const target = KTableRef.value?.selection?.find(
+    (elem: RowType) => (elem as any).id === (row as any).id
+  );
+  if (!target) return;
+  KTableRef.value?.toggleRowSelection(target, flag);
+}
+
+function toggleRowExpansion(row: RowType, flag?: boolean) {
+  KTableRef.value?.toggleRowExpansion(row, flag);
+}
+
+defineExpose({
+  clearSelection,
+  setSelection,
+  toggleRowSelection,
+  toggleRowExpansion
+});
 </script>
 <script lang="ts">
 export default {

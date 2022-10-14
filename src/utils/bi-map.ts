@@ -172,7 +172,7 @@ export function BiMapConversion<T>(targetData: T, mapData: BiMap) {
           const val = mapData.get(key);
           if (val) {
             resultItem[val] = _cloneDeep(item[key]);
-          } else if (resultItem[key]) {
+          } else if (!resultItem[key]) {
             resultItem[key] = _cloneDeep(item[key]);
           }
         }

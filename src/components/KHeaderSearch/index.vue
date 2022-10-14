@@ -17,6 +17,7 @@
     <el-form-item>
       <el-button @click="handleReset">重置</el-button>
     </el-form-item>
+    <slot name="action" />
     <el-form-item>
       <el-button
         @click="handleToggleFold"

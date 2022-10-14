@@ -112,7 +112,7 @@ const isIndeterminate = computed(() => {
   return Boolean(!isCheckAll.value && selectList.value?.length);
 });
 
-function handleClearSelection() {
+function clearSelection() {
   selectList.value = [];
   emits('selection-change', []);
 }
@@ -121,7 +121,7 @@ watch(
   () => props.tableData,
   () => {
     if (!props.reserveSelection) {
-      handleClearSelection();
+      clearSelection();
     }
   }
 );
@@ -149,6 +149,37 @@ function checkboxRowChange(flag: boolean, row: RowType) {
   emits('selection-change', selectList.value);
   emits('select', selectList.value, row);
 }
+
+function setSelection(list: RowType[] = []) {
+  const filterData = list.filter((row) => {
+    return props.selectable(row);
+  });
+  selectList.value = filterData;
+  emits('selection-change', filterData);
+}
+
+function toggleRowSelection(row: RowType, flag?: boolean) {
+  const { id } = row as any;
+  const index = selectList.value.findIndex((item) => (item as any).id === id);
+  if (flag === true && index === -1) {
+    selectList.value.push(row);
+    emits('select', selectList.value, row);
+  } else if (flag === false && index > -1) {
+    selectList.value.splice(index, 1);
+  } else if (index > -1) {
+    selectList.value.splice(index, 1);
+  } else {
+    selectList.value.push(row);
+    emits('select', selectList.value, row);
+  }
+  emits('selection-change', selectList.value);
+}
+
+defineExpose({
+  clearSelection,
+  setSelection,
+  toggleRowSelection
+});
 </script>
 <script lang="ts">
 export default {

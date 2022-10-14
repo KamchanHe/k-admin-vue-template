@@ -60,6 +60,7 @@ const total = ref(0);
 onMounted(() => {
   fetchData();
 });
+
 const fetchData = () => {
   withLoading(getTablePage)({
     pageSize: pageSize.value,
@@ -87,7 +88,6 @@ export default {
 .container-box {
   display: flex;
   flex-direction: column;
-  height: 100%;
   overflow: hidden;
 }
 
