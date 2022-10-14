@@ -1,4 +1,4 @@
-import type { MockMethodType, ResponseConfigType } from '@/types/mock';
+import type { MockMethodType } from '@/types/mock';
 import Mock from 'mockjs';
 
 const data = Mock.mock({
@@ -17,7 +17,7 @@ const data = Mock.mock({
 const getTablePage: MockMethodType = {
   url: '/k-admin-template/table/page',
   method: 'get',
-  response: (config: ResponseConfigType) => {
+  response: (config) => {
     const { pageSize, pageNum } = config.query;
     const { items } = data;
     return {
@@ -30,4 +30,4 @@ const getTablePage: MockMethodType = {
   }
 };
 
-export default [getTablePage] as MockMethodType[];
+export default [getTablePage];

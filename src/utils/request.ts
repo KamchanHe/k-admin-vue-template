@@ -32,9 +32,14 @@ class Service {
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         const res = response.data;
-        if (res.code !== 200) {
-          ElMessage.error(res.message || 'Error');
-          if (res.code === 401) {
+        const kRes = {
+          ...res,
+          code: res.code || res.status,
+          message: res.message || res.msg
+        };
+        if (kRes.code !== 200) {
+          ElMessage.error(kRes.message || 'Error');
+          if (kRes.code === 401) {
             // to re-login
             ElMessageBox.confirm(
               'You have been logged out, you can cancel to stay on this page, or log in again',
@@ -54,17 +59,17 @@ class Service {
                 throw new Error(error);
               });
           }
-          return Promise.reject(new Error(res.message || 'Error'));
+          return Promise.reject(new Error(kRes.message || 'Error'));
         }
-        return res;
+        return kRes;
       },
       (error) => {
-        const { message } = error.response.data;
+        const { message, msg } = error.response.data;
         ElMessage({
-          message: message || '系统出错',
+          message: message || msg || '系统出错',
           type: 'error'
         });
-        return Promise.reject(new Error(message || 'Error'));
+        return Promise.reject(new Error(message || msg || 'Error'));
       }
     );
   }

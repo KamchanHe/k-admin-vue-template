@@ -1,4 +1,4 @@
-import type { MockMethodType, ResponseConfigType } from '@/types/mock';
+import type { MockMethodType } from '@/types/mock';
 import type { TokensType, UsersType } from '@/types/mock/user';
 
 const tokens: TokensType = {
@@ -28,7 +28,7 @@ const users: UsersType = {
 const login: MockMethodType = {
   url: '/k-admin-template/user/login',
   method: 'post',
-  response: (config: ResponseConfigType) => {
+  response: (config) => {
     const { username } = config.body;
     const token = tokens[username];
     if (!token) {
@@ -48,7 +48,7 @@ const login: MockMethodType = {
 const getUserInfo: MockMethodType = {
   url: '/k-admin-template/user/info',
   method: 'get',
-  response: (config: ResponseConfigType) => {
+  response: (config) => {
     const { token } = config.query;
     const info = users[token];
     if (!info) {
@@ -76,4 +76,4 @@ const logout = {
   }
 };
 
-export default [login, getUserInfo, logout] as MockMethodType[];
+export default [login, getUserInfo, logout];
