@@ -72,8 +72,7 @@ onMounted(() => {
 });
 
 const searchActiveCount = computed(() => {
-  const { searchForm } = props;
-  const values = _values(searchForm);
+  const values = _values(props.searchForm);
   const { length } = _filter(values, (item) => item);
   return length || '';
 });
@@ -91,7 +90,6 @@ const handleGetCalculateInfo = () => {
   const childrenItems = parent?.querySelectorAll(
     '.el-form-item'
   ) as NodeListOf<HTMLElement>;
-  const { actionCount } = props;
   const child = _head(childrenItems);
   let { marginRight } = child
     ? getComputedStyle(child)
@@ -99,7 +97,7 @@ const handleGetCalculateInfo = () => {
   marginRight = marginRight.replace(/px|%/gi, '');
   childrenMarginRight.value = Number(marginRight);
 
-  const diff = (childrenItems?.length || 0) - actionCount;
+  const diff = (childrenItems?.length || 0) - props.actionCount;
   let diffWidth = 0;
   widths.value = _map(childrenItems, (item, index) => {
     const width = item.clientWidth;
@@ -117,9 +115,8 @@ const handleGetCalculateInfo = () => {
  */
 const handleRefreshParentWidth = () => {
   const parent = getParentNode();
-  const { actionCount } = props;
   const diffWidth = _reduce(
-    widths.value.slice(-actionCount),
+    widths.value.slice(-props.actionCount),
     (total, n) => {
       return total + n;
     },
@@ -141,8 +138,7 @@ const handleToggleFold = () => {
  * @return {void}
  */
 const handleToggleItem = () => {
-  const { actionCount } = props;
-  const targets = Array.from(children.value || []).slice(0, -actionCount);
+  const targets = Array.from(children.value || []).slice(0, -props.actionCount);
   if (unfold.value) {
     _forEach(targets, (item) => {
       item.style.display = 'inline-flex';
@@ -168,8 +164,7 @@ const handleToggleItem = () => {
 const handleSearch = () => {
   KHeaderSearchFormRef.value?.validate((valid) => {
     if (valid) {
-      const { searchForm } = props;
-      emits('handleSearch', { ...searchForm });
+      emits('handleSearch', { ...props.searchForm });
     }
   });
 };

@@ -27,16 +27,15 @@ interface PropsState {
 const props = defineProps<PropsState>();
 const router = useRouter();
 const push = () => {
-  const { checkRedirect, redirect, to } = props;
   const staticFlag =
-    checkRedirect &&
-    (!redirect || redirect === 'noRedirect') &&
-    !to.includes('dashboard');
+    props.checkRedirect &&
+    (!props.redirect || props.redirect === 'noRedirect') &&
+    !props.to.includes('dashboard');
   if (staticFlag) return;
   if (device.value === 'mobile' && sidebar.value.opened) {
     appStore.closeSideBar(false);
   }
-  router.push(to).catch((err) => {
+  router.push(props.to).catch((err) => {
     console.log(err);
   });
 };
