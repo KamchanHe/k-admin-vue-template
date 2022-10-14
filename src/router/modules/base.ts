@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import CommonLayout from '@/layout/common/index.vue';
 import { nestedRoutes } from './nested';
 import { exampleRoutes } from './example';
+import { organizationRoutes } from './organization';
 
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -47,6 +48,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 export const asyncRoutes: RouteRecordRaw[] = [
   ...nestedRoutes,
   ...exampleRoutes,
+  ...organizationRoutes,
   { path: '/:path(.*)', redirect: '/404', meta: { hidden: true } }
 ];
 
