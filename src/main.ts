@@ -16,6 +16,8 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 
 import 'virtual:svg-icons-register';
 
+import 'default-passive-events';
+
 const app = createApp(App);
 registerIcons(app);
 const pinia = createPinia();

@@ -56,6 +56,7 @@ module.exports = {
     'import/no-cycle': 'off',
     // typescript
     '@typescript-eslint/no-this-alias': 'off',
-    '@typescript-eslint/no-use-before-define': 'off'
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-empty-interface': 'off'
   }
 };
