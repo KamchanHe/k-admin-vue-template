@@ -25,7 +25,7 @@ const find = Symbol('find'); // 私有方法 find
 const unFind = Symbol('unFind'); // 唯一变量 代表未找到
 
 type CommonType = string | number;
-type BiMapState = [[CommonType, CommonType]];
+type BiMapState = [CommonType, CommonType][];
 type MapStoreState = { key: CommonType; val: CommonType };
 type Callback = (key: CommonType, val: CommonType, _this: BiMap) => void;
 
@@ -160,13 +160,13 @@ export class BiMap {
   }
 }
 
-export function BiMapConversion<T extends Array<T> | object | CommonType>(
-  targetData: T,
-  mapData: BiMap
-) {
+export function BiMapConversion<T>(targetData: T, mapData: BiMap) {
   if (_isArray(targetData)) {
-    return _map(targetData, (item: T) => {
-      const resultItem: Record<number | string, T[keyof T]> = {};
+    return _map(targetData, (item) => {
+      const resultItem: Record<
+        number | string,
+        typeof item[keyof typeof item]
+      > = {};
       for (const key in item) {
         if (Object.prototype.hasOwnProperty.call(item, key)) {
           const val = mapData.get(key);

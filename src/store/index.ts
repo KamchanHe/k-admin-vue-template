@@ -4,13 +4,15 @@ import useUserStore from './modules/user';
 import usePermissionStore from './modules/permission';
 import useAppStore from './modules/app';
 import useTagsViewStore from './modules/tagsView';
+import useOrganizationStore from './modules/organization';
 
 export {
   useUserStore,
   usePermissionStore,
   useAppStore,
   useSettingsStore,
-  useTagsViewStore
+  useTagsViewStore,
+  useOrganizationStore
 };
 
 const useStore = () => ({
@@ -18,7 +20,8 @@ const useStore = () => ({
   permissionStore: usePermissionStore,
   appStore: useAppStore,
   settingsStore: useSettingsStore,
-  tagsViewStore: useTagsViewStore
+  tagsViewStore: useTagsViewStore,
+  organizationStore: useOrganizationStore
 });
 
 export default useStore;

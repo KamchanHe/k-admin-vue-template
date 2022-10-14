@@ -34,6 +34,25 @@
           id="size-select"
           class="right-menu-item hover-effect"
         />
+        <div class="right-menu-item hover-effect">
+          <el-select
+            v-model="tenantValue"
+            placeholder="请选择"
+            @change="tenantValueChange"
+          >
+            <el-option
+              v-for="item in tenantList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+              <div class="tenant-option">
+                <span>{{ item.label }}</span>
+                <span>{{ item.value }}</span>
+              </div>
+            </el-option>
+          </el-select>
+        </div>
       </template>
 
       <el-dropdown
@@ -74,7 +93,8 @@ import {
   useAppStore,
   useUserStore,
   useTagsViewStore,
-  useSettingsStore
+  useSettingsStore,
+  useOrganizationStore
 } from '@/store';
 import TopSidebar from '../Sidebar/TopSidebar.vue';
 import MixtureSidebar from '../Sidebar/MixtureSidebar.vue';
@@ -83,6 +103,7 @@ const appStore = useAppStore();
 const userStore = useUserStore();
 const tagsViewStore = useTagsViewStore();
 const settingsStore = useSettingsStore();
+const organizationStore = useOrganizationStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -94,6 +115,25 @@ const nickname = computed(() => userStore.nickname);
 const showBreadCrumb = computed(() => settingsStore.breadCrumb);
 const showSizeSelect = computed(() => settingsStore.sizeSelect);
 const navigationType = computed(() => settingsStore.navigationType);
+const tenantList = computed(() => organizationStore.tenantList);
+const tenantValue = computed({
+  get() {
+    return organizationStore.tenant;
+  },
+  set(value) {
+    organizationStore.setTenant(value);
+  }
+});
+
+function tenantValueChange(value: string) {
+  tenantValue.value = value;
+  if (route.path !== '/dashboard') {
+    router.replace('/');
+  }
+  setTimeout(() => {
+    window.location.reload();
+  }, 16.7);
+}
 
 function toggleSideBar() {
   appStore.toggleSidebar();

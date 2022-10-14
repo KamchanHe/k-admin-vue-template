@@ -2,7 +2,11 @@ import { ElMessage } from 'element-plus';
 import NProgress from 'nprogress';
 import { isEmpty as _isEmpty } from 'lodash-es';
 import router from '@/router';
-import { useUserStore, usePermissionStore } from '@/store';
+import {
+  useUserStore,
+  usePermissionStore,
+  useOrganizationStore
+} from '@/store';
 import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });
@@ -12,7 +16,29 @@ const whiteList = ['/login'];
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
 
+  const organizationStore = useOrganizationStore();
   const userStore = useUserStore();
+
+  const { tenantList } = organizationStore;
+  const hasTenantList = !_isEmpty(tenantList);
+  if (!hasTenantList) {
+    const tenantListResponse = await organizationStore.getTenantList();
+    if (_isEmpty(tenantListResponse)) {
+      await userStore.resetToken();
+      ElMessage.error('Missing TenantList!');
+      next(`/login?redirect=${to.path}`);
+      return;
+    }
+  }
+
+  const { tenant } = organizationStore;
+  if (!tenant && to.path !== '/login') {
+    await userStore.resetToken();
+    ElMessage.error('Missing Tenant!Please Select Tenant First!');
+    next(`/login?redirect=${to.path}`);
+    return;
+  }
+
   const { token } = userStore;
   const pass = whiteList.indexOf(to.path) > -1;
   // 未登录 && 白名单

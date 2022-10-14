@@ -1,16 +1,29 @@
-import storage from '@/utils/storage';
+import { localGet, localSet, localRemove } from '@/utils/storage';
 
 const TokenKey = 'K-Admin-Token';
 export function getToken(): string {
-  return storage.localGet(TokenKey) || '';
+  return localGet(TokenKey) || '';
 }
 
 export function setToken(token: string) {
-  return storage.localSet(TokenKey, token);
+  return localSet(TokenKey, token);
 }
 
 export function removeToken() {
-  return storage.localRemove(TokenKey);
+  return localRemove(TokenKey);
+}
+
+const TenantKey = 'K-Admin-Tenant';
+export function getTenant(): string {
+  return localGet(TenantKey) || '';
+}
+
+export function setTenant(tenant: string) {
+  return localSet(TenantKey, tenant);
+}
+
+export function removeTenant() {
+  return localRemove(TenantKey);
 }
 
 export default {};

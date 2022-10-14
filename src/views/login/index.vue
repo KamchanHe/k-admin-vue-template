@@ -39,6 +39,25 @@
               </el-input>
             </el-form-item>
             <el-form-item>
+              <el-select
+                v-model="tenantValue"
+                placeholder="请选择"
+                @change="tenantValueChange"
+              >
+                <el-option
+                  v-for="item in tenantList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                  <div class="tenant-option">
+                    <span>{{ item.label }}</span>
+                    <span>{{ item.value }}</span>
+                  </div>
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item>
               <div class="extra-operate-box">
                 <el-checkbox v-model="formData.cacheFormData">
                   记住我
@@ -66,11 +85,47 @@
 import Welcoming from '@/assets/illustrations/welcoming.svg';
 import WelcomeCats from '@/assets/illustrations/welcome-cats.svg';
 import Logo from '@/assets/images/logo.svg';
-import { useUserStore } from '@/store';
+import { useUserStore, useOrganizationStore } from '@/store';
 import { localGet, localSet, localRemove } from '@/utils/storage';
-import { assign as _assign } from 'lodash-es';
+import {
+  assign as _assign,
+  isEmpty as _isEmpty,
+  head as _head
+} from 'lodash-es';
 
+import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
+
+const organizationStore = useOrganizationStore();
+const tenantValue = ref<string>();
+const tenantList = computed(() => {
+  const { tenantList } = organizationStore;
+  return tenantList;
+});
+function initTenantValue() {
+  const { tenant } = organizationStore;
+  if (tenant) {
+    tenantValue.value = tenant;
+    return;
+  }
+  const noTenantList = _isEmpty(tenantList.value);
+  if (noTenantList) {
+    ElMessage.error('暂无Tenant可用,请联系管理员');
+    return;
+  }
+  const head = _head(tenantList.value);
+  const { value } = head;
+  organizationStore.setTenant(value);
+  tenantValue.value = value;
+}
+
+onMounted(() => {
+  initTenantValue();
+});
+
+function tenantValueChange(value) {
+  organizationStore.setTenant(value);
+}
 
 const FormRef = ref<FormInstance>();
 const cacheFormDataKey = 'login-form-data';
@@ -99,6 +154,7 @@ const formRules = reactive({
   ]
 }) as FormRules;
 
+const route = useRoute();
 const router = useRouter();
 
 function submitForm() {
@@ -113,10 +169,27 @@ function submitForm() {
         } else {
           localRemove(cacheFormDataKey);
         }
-        router.push('/');
+        const { query } = route;
+        const { redirect } = query || {};
+        const redirectQuery = getOtherQuery(query);
+        router.push({
+          path: redirect || '/',
+          query: {
+            ...redirectQuery
+          }
+        });
       });
     }
   });
+}
+
+function getOtherQuery(query) {
+  return Object.keys(query).reduce((acc, cur) => {
+    if (cur !== 'redirect') {
+      acc[cur] = query[cur];
+    }
+    return acc;
+  }, {});
 }
 </script>
 
@@ -178,6 +251,10 @@ export default {
 
   .form-box {
     margin-top: 32px;
+
+    .el-select {
+      width: 100%;
+    }
   }
 
   .extra-operate-box {
@@ -185,6 +262,17 @@ export default {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+  }
+}
+
+.tenant-option {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+
+  span:nth-child(2) {
+    font-size: 13px;
+    color: #8492a6;
   }
 }
 </style>
