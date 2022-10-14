@@ -31,7 +31,7 @@ class Service {
     });
 
     this.instance.interceptors.response.use(
-      (response: AxiosResponse<ResultType<unknown>>) => {
+      (response: AxiosResponse) => {
         const res = response.data;
         if (res.code !== 200) {
           ElMessage.error(res.message || 'Error');
@@ -81,8 +81,10 @@ class Service {
   ): Promise<ResultType<S>> {
     return this.instance.get(url, {
       params,
-      paramsSerializer(parameter) {
-        return qs.stringify(parameter, { arrayFormat: 'repeat' });
+      paramsSerializer: {
+        encode: (parameter) => {
+          return qs.stringify(parameter, { arrayFormat: 'repeat' });
+        }
       },
       ...extraConfig
     });
