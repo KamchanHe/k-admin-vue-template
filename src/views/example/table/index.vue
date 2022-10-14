@@ -41,7 +41,7 @@ import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
 import KPagination from '@/components/KPagination/index.vue';
 import { getTablePage } from '@/api/table';
-import type { TablePageItemType } from '@/types/api/table/data';
+import type { TablePageItemType } from '@/types/api/table';
 import { withLoading } from '@/utils/with-loading';
 import { $tableHeader } from '@/constant/table-header/table';
 

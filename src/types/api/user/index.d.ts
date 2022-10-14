@@ -1,4 +1,4 @@
-import type { UserStoreType } from '@/types/store/user';
+import { RolesType } from '@/types/store/user';
 
 export interface LoginRequest {
   username: string;
@@ -13,4 +13,9 @@ export interface UserInfoRequest {
   token: string;
 }
 
-export type UserInfoResponse = UserStoreType;
+export interface UserInfoResponse {
+  token: string;
+  nickname: string;
+  avatar: string;
+  roles: RolesType;
+}
