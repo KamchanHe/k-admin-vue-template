@@ -42,7 +42,11 @@ export default defineConfig({
     viteMockServe({
       mockPath: 'mock',
       supportTs: true,
-      localEnabled: true
+      localEnabled: true,
+      injectCode: `
+          import { setupProdMockServer } from '/mock';
+          setupProdMockServer();
+        `
     })
   ],
   resolve: {

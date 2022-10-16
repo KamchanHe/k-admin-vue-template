@@ -61,7 +61,7 @@ class Service {
           }
           return Promise.reject(new Error(kRes.message || 'Error'));
         }
-        return kRes;
+        return Promise.resolve(kRes);
       },
       (error) => {
         const { message, msg } = error.response.data;

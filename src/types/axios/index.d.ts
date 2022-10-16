@@ -1,5 +1,7 @@
 export interface ResultType<T> {
-  code: number;
-  message: string;
+  code?: number;
+  status?: number;
+  message?: string;
+  msg?: string;
   data: T;
 }
