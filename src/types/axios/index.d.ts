@@ -1,4 +1,4 @@
-export interface ResultType<T> {
+export interface ResultType<T = unknown> {
   code?: number;
   status?: number;
   message?: string;

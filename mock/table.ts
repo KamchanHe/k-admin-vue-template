@@ -2,7 +2,7 @@ import type { MockMethodType } from '@/types/mock';
 import Mock from 'mockjs';
 
 const data = Mock.mock({
-  'items|300': [
+  'list|300': [
     {
       id: '@id',
       title: '@sentence(10, 20)',
@@ -19,12 +19,12 @@ const getTablePage: MockMethodType = {
   method: 'get',
   response: (config) => {
     const { pageSize, pageNum } = config.query;
-    const { items } = data;
+    const { list } = data;
     return {
       code: 200,
       data: {
-        total: items.length,
-        items: items.slice(pageSize * (pageNum - 1), pageSize * pageNum)
+        total: list.length,
+        list: list.slice(pageSize * (pageNum - 1), pageSize * pageNum)
       }
     };
   }

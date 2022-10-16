@@ -66,8 +66,8 @@ const fetchData = () => {
     pageSize: pageSize.value,
     pageNum: pageNum.value
   }).then((response) => {
-    const { items, total: totalNum } = response.data;
-    tableData.value = items;
+    const { list, total: totalNum } = response.data;
+    tableData.value = list;
     total.value = totalNum;
   });
 };

@@ -1,6 +1,6 @@
-import type { TableCommonRequestType } from '../index';
+import type { PaginationRequestType, PaginationResponseType } from '../index';
 
-export interface GetTablePageRequest extends TableCommonRequestType {}
+export interface GetTablePageRequest extends PaginationRequestType {}
 
 export interface TablePageItemType {
   id: string;
@@ -10,7 +10,5 @@ export interface TablePageItemType {
   display_time: string;
   pageviews: number;
 }
-export interface GetTablePageResponse {
-  total: number;
-  items: TablePageItemType[];
-}
+export interface GetTablePageResponse
+  extends PaginationResponseType<TablePageItemType[]> {}
