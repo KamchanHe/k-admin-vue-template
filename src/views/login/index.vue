@@ -114,7 +114,7 @@ function initTenantValue() {
     return;
   }
   const head = _head(tenantList.value);
-  const { value } = head;
+  const { value = '' } = head || {};
   organizationStore.setTenant(value);
   tenantValue.value = value;
 }
@@ -123,7 +123,7 @@ onMounted(() => {
   initTenantValue();
 });
 
-function tenantValueChange(value) {
+function tenantValueChange(value: string) {
   organizationStore.setTenant(value);
 }
 
@@ -173,7 +173,7 @@ function submitForm() {
         const { redirect } = query || {};
         const redirectQuery = getOtherQuery(query);
         router.push({
-          path: redirect || '/',
+          path: (redirect as string) || '/',
           query: {
             ...redirectQuery
           }
@@ -183,13 +183,13 @@ function submitForm() {
   });
 }
 
-function getOtherQuery(query) {
+function getOtherQuery(query: typeof route.query) {
   return Object.keys(query).reduce((acc, cur) => {
     if (cur !== 'redirect') {
       acc[cur] = query[cur];
     }
     return acc;
-  }, {});
+  }, {} as Record<string, any>);
 }
 </script>
 

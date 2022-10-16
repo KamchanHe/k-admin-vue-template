@@ -8,10 +8,10 @@
           "
           class="no-redirect"
         >
-          {{ item.meta.title }}
+          {{ item.meta?.title }}
         </span>
         <a href="" v-else @click.prevent="handleLink(item)">
-          {{ item.meta.title }}
+          {{ item.meta?.title }}
         </a>
       </el-breadcrumb-item>
     </transition-group>

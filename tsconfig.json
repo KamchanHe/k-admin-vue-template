@@ -11,6 +11,8 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     "skipLibCheck": true,
     "allowJs": true,
     "baseUrl": ".",

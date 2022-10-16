@@ -58,7 +58,8 @@ export function mix(color1: string, color2: string, weight: number) {
  * @param {string} path
  * @return {boolean}
  */
-export function isExternal(path: string): boolean {
+export function isExternal(path?: string): boolean {
+  if (!path) return false;
   return /^(https?|ftp|mailto|tel):/.test(path);
 }
 

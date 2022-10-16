@@ -19,7 +19,7 @@ const sidebar = computed(() => appStore.sidebar);
 const device = computed(() => appStore.device);
 
 interface PropsState {
-  to: string;
+  to?: string;
   checkRedirect?: boolean;
   redirect?: RouteRecordRedirectOption | string;
 }
@@ -30,11 +30,12 @@ const push = () => {
   const staticFlag =
     props.checkRedirect &&
     (!props.redirect || props.redirect === 'noRedirect') &&
-    !props.to.includes('dashboard');
+    !props.to?.includes('dashboard');
   if (staticFlag) return;
   if (device.value === 'mobile' && sidebar.value.opened) {
     appStore.closeSideBar(false);
   }
+  if (!props.to) return;
   router.push(props.to).catch((err) => {
     console.log(err);
   });

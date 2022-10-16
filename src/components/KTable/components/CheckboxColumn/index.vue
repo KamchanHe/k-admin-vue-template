@@ -19,7 +19,7 @@
         <el-checkbox
           :model-value="checkboxItemIsSelect(scope.row)"
           :disabled="!selectable(scope.row)"
-          @change="(flag) => checkboxRowChange(flag, scope.row)"
+          @change="(flag:boolean) => checkboxRowChange(flag, scope.row)"
         />
       </el-tooltip>
     </template>
