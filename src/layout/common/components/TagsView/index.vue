@@ -81,7 +81,7 @@ const routes = computed(() => permissionStore.routes);
 const affixTags = ref<VisitedViewsState[]>([]);
 const visible = ref(false);
 const selectedTag = ref<VisitedViewsState>({});
-const scrollPaneRef = ref();
+const scrollPaneRef = ref<InstanceType<typeof ScrollPane>>();
 const left = ref(0);
 const top = ref(0);
 
@@ -148,7 +148,7 @@ function moveToCurrentTag() {
   nextTick(() => {
     for (const r of visitedViews.value) {
       if (r.path === route.path) {
-        scrollPaneRef.value.moveToTarget(r);
+        scrollPaneRef.value?.moveToTarget(r);
         if (r.fullPath !== route.fullPath) {
           tagsViewStore.updateVisitedView(route as VisitedViewsState);
         }

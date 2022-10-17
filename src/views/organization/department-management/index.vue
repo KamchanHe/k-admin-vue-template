@@ -106,7 +106,7 @@ function recursionConversion(
   });
 }
 
-const KTableRef = ref();
+const KTableRef = ref<InstanceType<typeof KTable>>();
 function handleToggleUnFold(flag: boolean, data = tableData.value) {
   _forEach(data, (item) => {
     KTableRef.value?.toggleRowExpansion(item, flag);

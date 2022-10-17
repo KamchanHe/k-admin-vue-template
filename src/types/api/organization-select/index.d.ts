@@ -6,7 +6,7 @@ export interface SelectDepartmentTreeItemBaseType {
 export interface GetSelectDepartmentTreeRequest {}
 export interface SelectDepartmentTreeItemType
   extends SelectDepartmentTreeItemBaseType {
-  children: SelectDepartmentTreeItemType[];
+  children?: SelectDepartmentTreeItemType[];
 }
 export type GetSelectDepartmentTreeResponse = SelectDepartmentTreeItemType[];
 

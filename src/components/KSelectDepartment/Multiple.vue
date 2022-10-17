@@ -59,8 +59,8 @@ import { ref } from 'vue';
 import KDepartmentTree from '@/components/KDepartmentTree/index.vue';
 import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
-import { $departmentManagementTableHeader as $tableHeader } from '@/constant/table-header/organization';
-import type { DepartmentTreeItemType } from '@/types/api/organization';
+import { $selectDepartmentTableHeader as $tableHeader } from '@/constant/table-header/organization-select';
+import type { SelectDepartmentTreeItemType } from '@/types/api/organization-select';
 import type { ScopeType } from '@/types/element-plus/el-table';
 import {
   map as _map,
@@ -71,10 +71,11 @@ import {
   every as _every,
   isEmpty as _isEmpty
 } from 'lodash-es';
+import type { ElTree } from 'element-plus';
 
 interface Props {
   departmentSelectType?: 'single' | 'multiple';
-  defaultSelection?: DepartmentTreeItemType[];
+  defaultSelection?: SelectDepartmentTreeItemType[];
 }
 const props = withDefaults(defineProps<Props>(), {
   defaultSelection: () => []
@@ -82,7 +83,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emits = defineEmits(['cancel', 'confirm']);
 
-const KDepartmentTreeRef = ref();
+const KDepartmentTreeRef = ref<InstanceType<typeof ElTree>>();
 
 watch(
   () => props.defaultSelection,
@@ -95,7 +96,7 @@ onMounted(() => {
   setDefaultSelection(props.defaultSelection);
 });
 
-function setDefaultSelection(selection: DepartmentTreeItemType[]) {
+function setDefaultSelection(selection: SelectDepartmentTreeItemType[]) {
   const isEmpty = _isEmpty(selection);
   if (!isEmpty) {
     const ids = _map(selection, 'id');
@@ -104,14 +105,16 @@ function setDefaultSelection(selection: DepartmentTreeItemType[]) {
   }
 }
 
-function departmentTreeSelectionChange(selection: DepartmentTreeItemType[]) {
+function departmentTreeSelectionChange(
+  selection: SelectDepartmentTreeItemType[]
+) {
   temporaryTableData.value = selection;
   handleSearch();
 }
 
 const tableHeader = ref($tableHeader);
-const tableData = ref<DepartmentTreeItemType[]>([]);
-const temporaryTableData = ref<DepartmentTreeItemType[]>([]);
+const tableData = ref<SelectDepartmentTreeItemType[]>([]);
+const temporaryTableData = ref<SelectDepartmentTreeItemType[]>([]);
 interface SearchFormType {
   departmentName?: string;
   departmentCode?: string;
@@ -130,7 +133,7 @@ function handleGetTableData() {
 }
 
 function tableDataFilter(
-  data: DepartmentTreeItemType[],
+  data: SelectDepartmentTreeItemType[],
   conditions: SearchFormType = {}
 ) {
   const copyData = _cloneDeep(data);
@@ -154,12 +157,14 @@ function tableDataFilter(
   });
 }
 
-function handleRemove(scope: ScopeType<DepartmentTreeItemType>) {
+function handleRemove(scope: ScopeType<SelectDepartmentTreeItemType>) {
   const { row } = scope;
   const { id } = row;
-  KDepartmentTreeRef.value.setChecked(id, false);
-  const checkedNodes = KDepartmentTreeRef.value.getCheckedNodes();
-  departmentTreeSelectionChange(checkedNodes);
+  KDepartmentTreeRef.value?.setChecked(id, false, false);
+  const checkedNodes = KDepartmentTreeRef.value?.getCheckedNodes();
+  departmentTreeSelectionChange(
+    (checkedNodes || []) as unknown as SelectDepartmentTreeItemType[]
+  );
 }
 
 function cancel() {

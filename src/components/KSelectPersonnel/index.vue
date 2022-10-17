@@ -25,41 +25,47 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { isFunction as _isFunction } from 'lodash-es';
-import type { SelectDepartmentTreeItemType } from '@/types/api/organization-select';
+import type { SelectPersonnelListItemType } from '@/types/api/organization-select';
 import KDialog from '@/components/KDialog/index.vue';
 import Single from './Single.vue';
 import Multiple from './Multiple.vue';
 
-// eslint-disable-next-line no-unused-vars
-const props = defineProps({
-  selectType: {
-    type: String,
-    default: 'multiple'
-  },
-  departmentSelectType: {
-    type: String,
-    default: 'single'
-  },
-  onConfirm: {
-    type: Function
-  },
-  onCancel: {
-    type: Function
-  }
+export interface MixinDataType {
+  title?: string;
+  defaultSelection?: SelectPersonnelListItemType[];
+}
+export interface OnConfirmParamType {
+  done: () => void;
+  selection: SelectPersonnelListItemType | SelectPersonnelListItemType[];
+}
+export interface OnCancelParamType {
+  done: () => void;
+}
+export type OnConfirmType = ({ done, selection }: OnConfirmParamType) => void;
+export type OnCancelType = ({ done }: OnCancelParamType) => void;
+
+interface Props {
+  selectType?: 'single' | 'multiple';
+  departmentSelectType?: 'single' | 'multiple';
+  onConfirm?: OnConfirmType;
+  onCancel?: () => void;
+}
+const props = withDefaults(defineProps<Props>(), {
+  selectType: 'multiple',
+  departmentSelectType: 'single'
 });
 
 const emits = defineEmits(['confirm', 'cancel']);
 
 const visible = ref(false);
+const title = ref('选择人员');
 
-const multipleDefaultSelection = ref<SelectDepartmentTreeItemType[]>([]);
+const multipleDefaultSelection = ref<SelectPersonnelListItemType[]>([]);
 
-interface MixinDataType {
-  defaultSelection: SelectDepartmentTreeItemType[];
-}
 function open(mixinData: MixinDataType) {
-  const { defaultSelection } = mixinData || {};
-  multipleDefaultSelection.value = defaultSelection;
+  const { title: targetTitle, defaultSelection } = mixinData || {};
+  title.value = targetTitle || '选择人员';
+  multipleDefaultSelection.value = defaultSelection || [];
   visible.value = true;
 }
 
@@ -78,7 +84,7 @@ function cancel() {
 }
 
 function confirm(
-  selection: SelectDepartmentTreeItemType | SelectDepartmentTreeItemType[]
+  selection: SelectPersonnelListItemType | SelectPersonnelListItemType[]
 ) {
   const isFunction = _isFunction(props.onConfirm);
   if (isFunction) {

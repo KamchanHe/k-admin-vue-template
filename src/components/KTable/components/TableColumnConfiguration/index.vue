@@ -19,24 +19,25 @@
 import KDialog from '@/components/KDialog/index.vue';
 import type { TableHeaderType } from '@/types/constant/table-header';
 import DialogContent from './DialogContent.vue';
+import type { MixinDataType as ContentMixinType } from './DialogContent.vue';
+
+export interface MixinDataType extends ContentMixinType {
+  title?: string;
+}
 
 const emits = defineEmits(['cancel', 'confirm']);
 
 const visible = ref(false);
 const title = ref('表头配置');
 
-const DialogContentRef = ref();
+const DialogContentRef = ref<InstanceType<typeof DialogContent>>();
 
-interface MixinType {
-  title?: string;
-  id: string;
-  headerData: TableHeaderType[];
-  defaultHeaderData: TableHeaderType[];
-}
-function open(data: MixinType) {
+function open(data: MixinDataType) {
+  const { title: targetTitle } = data || {};
+  title.value = targetTitle || '表头配置';
   visible.value = true;
   nextTick(() => {
-    DialogContentRef.value.handleMixin(data);
+    DialogContentRef.value?.handleMixin(data);
   });
 }
 

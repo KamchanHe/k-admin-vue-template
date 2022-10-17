@@ -12,17 +12,19 @@
 import { ref } from 'vue';
 import KDialog from '@/components/KDialog/index.vue';
 import DialogContent from './DialogContent.vue';
+import type { MixinDataType as ContentMixinType } from './DialogContent.vue';
+
+export interface MixinDataType extends ContentMixinType {
+  title?: string;
+}
 
 const emits = defineEmits(['confirm']);
 const visible = ref(false);
 const title = ref('');
-const DialogContentRef = ref();
+const DialogContentRef = ref<InstanceType<typeof DialogContent>>();
 
-interface MixinDataType {
-  title?: string;
-}
-function open(mixinData: MixinDataType = {}) {
-  const { title: targetTitle = '编辑角色' } = mixinData;
+function open(mixinData: MixinDataType) {
+  const { title: targetTitle = '编辑角色' } = mixinData || {};
   title.value = targetTitle;
   visible.value = true;
   nextTick(() => {

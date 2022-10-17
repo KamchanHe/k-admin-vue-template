@@ -1,7 +1,7 @@
 <template>
   <KDialog
     v-model="visible"
-    title="选择部门"
+    :title="title"
     :showAction="false"
     height="80%"
     width="80%"
@@ -28,6 +28,20 @@ import type { SelectDepartmentTreeItemType } from '@/types/api/organization-sele
 import SingleSelect from './Single.vue';
 import MultipleSelect from './Multiple.vue';
 
+export interface MixinDataType {
+  title?: string;
+  defaultSelection?: SelectDepartmentTreeItemType[];
+}
+export interface OnConfirmParamType {
+  done: () => void;
+  selection: SelectDepartmentTreeItemType | SelectDepartmentTreeItemType[];
+}
+export interface OnCancelParamType {
+  done: () => void;
+}
+export type OnConfirmType = ({ done, selection }: OnConfirmParamType) => void;
+export type OnCancelType = ({ done }: OnCancelParamType) => void;
+
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   selectType: {
@@ -45,15 +59,14 @@ const props = defineProps({
 const emits = defineEmits(['confirm', 'cancel']);
 
 const visible = ref(false);
+const title = ref('选择部门');
 
 const multipleDefaultSelection = ref<SelectDepartmentTreeItemType[]>([]);
 
-interface MixinDataType {
-  defaultSelection: SelectDepartmentTreeItemType[];
-}
 function open(mixinData: MixinDataType) {
-  const { defaultSelection } = mixinData || {};
-  multipleDefaultSelection.value = defaultSelection;
+  const { title: targetTitle, defaultSelection } = mixinData || {};
+  title.value = targetTitle || '选择部门';
+  multipleDefaultSelection.value = defaultSelection || [];
   visible.value = true;
 }
 

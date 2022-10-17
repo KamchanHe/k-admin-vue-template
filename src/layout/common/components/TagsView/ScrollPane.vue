@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import { useTagsViewStore } from '@/store';
+import type { ElScrollbar } from 'element-plus';
 
 const tagAndTagSpacing = ref(4);
 const emits = defineEmits(['scroll']);
@@ -22,25 +23,34 @@ const tagsViewStore = useTagsViewStore();
 
 const visitedViews = computed(() => tagsViewStore.visitedViews);
 
-const scrollContainer = ref();
-const scrollWrapper = computed(() => scrollContainer.value.$refs.wrap$);
+const scrollContainer = ref<InstanceType<typeof ElScrollbar>>();
+const scrollWrapper = computed(() => scrollContainer.value?.$refs.wrap$);
 
 onMounted(() => {
-  scrollWrapper.value.addEventListener('scroll', emitScroll, true);
+  (scrollWrapper.value as HTMLElement)?.addEventListener(
+    'scroll',
+    emitScroll,
+    true
+  );
 });
 onBeforeUnmount(() => {
-  scrollWrapper.value.removeEventListener('scroll', emitScroll);
+  (scrollWrapper.value as HTMLElement)?.removeEventListener(
+    'scroll',
+    emitScroll
+  );
 });
 
 function handleScroll(event: WheelEvent) {
   const eventDelta = -event.deltaY || -event.deltaY * 40;
-  scrollWrapper.value.scrollLeft += eventDelta / 4;
+  if (scrollWrapper.value) {
+    (scrollWrapper.value as HTMLElement).scrollLeft += eventDelta / 4;
+  }
 }
 
 function moveToTarget(currentTag = {}) {
-  const $container = scrollContainer.value.$el;
+  const $container = scrollContainer.value?.$el;
   const $containerWidth = $container.offsetWidth;
-  const $scrollWrapper = scrollWrapper.value;
+  const $scrollWrapper = scrollWrapper.value as HTMLElement;
   const tagListDom = document.querySelectorAll(
     '.tags-view-item'
   ) as NodeListOf<HTMLElement>;

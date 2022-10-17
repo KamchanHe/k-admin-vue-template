@@ -83,9 +83,9 @@ function handleChangeRole(item?: RoleListItemType) {
   }
 }
 
-const EditRoleDialogRef = ref();
+const EditRoleDialogRef = ref<InstanceType<typeof EditRoleDialog>>();
 function handleCreate() {
-  EditRoleDialogRef.value?.open({ title: '新建角色' });
+  EditRoleDialogRef.value?.open({ title: '新建角色', id: '' });
 }
 
 function handleEdit(item: RoleListItemType) {

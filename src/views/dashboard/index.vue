@@ -49,11 +49,13 @@ const userStore = useUserStore();
 const username = computed(() => userStore.username);
 const roles = computed(() => userStore.roles);
 const inputValue = ref('');
-const KSelectDepartmentSingleRef = ref();
+const KSelectDepartmentSingleRef =
+  ref<InstanceType<typeof KSelectDepartment>>();
 function selectDepartmentSingle() {
-  KSelectDepartmentSingleRef.value?.open();
+  KSelectDepartmentSingleRef.value?.open({});
 }
-const KSelectDepartmentMultipleRef = ref();
+const KSelectDepartmentMultipleRef =
+  ref<InstanceType<typeof KSelectDepartment>>();
 function selectDepartmentMultiple() {
   KSelectDepartmentMultipleRef.value?.open({
     defaultSelection: [
@@ -63,11 +65,12 @@ function selectDepartmentMultiple() {
   });
 }
 
-const KSelectPersonnelSingleRef = ref();
+const KSelectPersonnelSingleRef = ref<InstanceType<typeof KSelectPersonnel>>();
 function selectPersonnelSingle() {
-  KSelectPersonnelSingleRef.value?.open();
+  KSelectPersonnelSingleRef.value?.open({});
 }
-const KSelectPersonnelMultipleRef = ref();
+const KSelectPersonnelMultipleRef =
+  ref<InstanceType<typeof KSelectPersonnel>>();
 function selectPersonnelMultiple() {
   KSelectPersonnelMultipleRef.value?.open({
     defaultSelection: [

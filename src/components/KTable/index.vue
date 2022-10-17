@@ -76,6 +76,7 @@
 </template>
 
 <script setup lang="ts">
+import type { ElTable } from 'element-plus';
 import type { TableHeaderType } from '@/types/constant/table-header';
 import type { GetArrayElementType } from '@/types';
 import type {
@@ -224,9 +225,9 @@ function sortChange(sort: {
   emits('sort-change', result);
 }
 
-const KTableRef = ref();
+const KTableRef = ref<InstanceType<typeof ElTable>>();
 const KTableWrapperRef = computed(() => {
-  const bodyWrapper = KTableRef.value?.$refs.bodyWrapper;
+  const bodyWrapper = KTableRef.value?.$refs.bodyWrapper as HTMLElement;
   return bodyWrapper?.querySelector('.el-scrollbar__wrap');
 });
 useKeepScroll(KTableWrapperRef);
@@ -272,7 +273,8 @@ function initTableColumnConfiguration() {
   }
 }
 
-const TableColumnConfigurationRef = ref();
+const TableColumnConfigurationRef =
+  ref<InstanceType<typeof TableColumnConfiguration>>();
 function showTableColumnConfiguration() {
   const id = route.path;
   TableColumnConfigurationRef.value?.open({
@@ -285,24 +287,24 @@ function tableHeaderUpdate(data: TableHeaderType[]) {
   emits('update:table-header', data);
 }
 
-const CheckboxColumnRef = ref();
+const CheckboxColumnRef = ref<InstanceType<typeof CheckboxColumn>>();
 function clearSelection() {
   CheckboxColumnRef.value?.clearSelection();
   KTableRef.value?.clearSelection();
 }
 
 function setSelection(list: RowType[] = []) {
-  CheckboxColumnRef.value?.setSelection(list, true);
+  CheckboxColumnRef.value?.setSelection(list);
   list.forEach((row) => {
     KTableRef.value?.toggleRowSelection(row, true);
   });
 }
 
-function toggleRowSelection(row: RowType, flag?: boolean) {
+function toggleRowSelection(row: RowType, flag: boolean) {
   CheckboxColumnRef.value?.toggleRowSelection(row, flag);
-  const target = KTableRef.value?.selection?.find(
-    (elem: RowType) => (elem as any).id === (row as any).id
-  );
+  const target = KTableRef.value
+    ?.getSelectionRows()
+    ?.find((elem: RowType) => (elem as any).id === (row as any).id);
   if (!target) return;
   KTableRef.value?.toggleRowSelection(target, flag);
 }

@@ -81,7 +81,7 @@ const pageNum = ref(1);
 const pageSize = ref(10);
 const tableHeader = ref($tableHeader);
 const tableData = ref<PersonnelListItemType[]>([]);
-const KTableRef = ref();
+const KTableRef = ref<InstanceType<typeof KTable>>();
 
 function departmentTreeSelectionChange(
   selection: SelectDepartmentTreeItemType[]

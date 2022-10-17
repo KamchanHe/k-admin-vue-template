@@ -162,7 +162,7 @@ const childrenRoutes = computed(() => {
 // 宽度计算结果
 const widthData = ref<number[]>([]);
 // 导航栏Ref
-const MixtureSidebarBoxMenuRef = ref();
+const MixtureSidebarBoxMenuRef = ref<HTMLDivElement>();
 // 计算导航栏的计时器
 let calculateTimer: ReturnType<typeof setTimeout>;
 
@@ -172,9 +172,9 @@ let calculateTimer: ReturnType<typeof setTimeout>;
  */
 function calculateModuleNavigationWidth() {
   nextTick(() => {
-    const elMenu = MixtureSidebarBoxMenuRef.value.querySelector('.el-menu');
-    const { children } = elMenu;
-    if (!children.length) {
+    const elMenu = MixtureSidebarBoxMenuRef.value?.querySelector('.el-menu');
+    const { children } = elMenu || {};
+    if (!children?.length) {
       clearTimeout(calculateTimer);
       calculateTimer = setTimeout(() => {
         calculateModuleNavigationWidth();
@@ -198,9 +198,13 @@ function calculateModuleNavigationWidth() {
  */
 function setModuleNavigationView() {
   const widthArray = widthData.value;
-  const parentWidth = MixtureSidebarBoxMenuRef.value.clientWidth;
+  const parentWidth = MixtureSidebarBoxMenuRef.value?.clientWidth;
   let total = 0;
   let limit = -1;
+  if (!parentWidth) {
+    limitIndex.value = limit;
+    return;
+  }
   for (let index = 0; index < widthArray.length; index += 1) {
     const width = widthArray[index];
     total += width;

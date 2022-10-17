@@ -58,6 +58,12 @@ import { $fixedAlignOptions } from '@/constant/options/table-column-configuratio
 import { ElMessage } from 'element-plus';
 import TableColumnConfigurationVersion from '@/constant/table-column-configuration-version';
 
+export interface MixinDataType {
+  id: string;
+  headerData: TableHeaderType[];
+  defaultHeaderData: TableHeaderType[];
+}
+
 const emits = defineEmits(['reset', 'cancel', 'confirm']);
 
 const configurationData = ref<TableHeaderType[]>([]);
@@ -67,13 +73,7 @@ const cacheVersionData = reactive<Record<string, string>>(
   TableColumnConfigurationVersion
 );
 
-interface MixinType {
-  id: string;
-  headerData: TableHeaderType[];
-  defaultHeaderData: TableHeaderType[];
-}
-
-function handleMixin(data: MixinType) {
+function handleMixin(data: MixinDataType) {
   if (!data) return;
   const { id, headerData, defaultHeaderData } = data;
   columnConfigurationId.value = id;

@@ -62,10 +62,10 @@ function closeSidebar(evt: Event) {
   }
 }
 
-const rightPanel = ref();
+const rightPanel = ref<HTMLDivElement>();
 
 function insertToBody() {
-  const elx = rightPanel.value;
+  const elx = rightPanel.value as Node;
   const body = document.querySelector('body') as HTMLElement;
   body.insertBefore(elx, body.firstChild);
 }
@@ -76,7 +76,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   const elx = rightPanel.value;
-  elx.remove();
+  elx?.remove();
 });
 </script>
 

@@ -65,6 +65,8 @@ import type {
 } from '@/types/element-plus/el-tree';
 import { BiMapConversion } from '@/utils/bi-map';
 import { map as _map } from 'lodash-es';
+import type { ElTree } from 'element-plus';
+import type TreeNodeType from 'element-plus/es/components/tree/src/model/node';
 
 const props = defineProps({
   nodeKey: {
@@ -118,10 +120,10 @@ const treeProps = {
   label: 'departmentName'
 };
 const departmentSelection = ref<SelectDepartmentTreeItemType[]>([]);
-const DepartmentTreeRef = ref();
+const DepartmentTreeRef = ref<InstanceType<typeof ElTree>>();
 
 watch(treeFilterKeyword, (val) => {
-  DepartmentTreeRef.value.filter(val);
+  DepartmentTreeRef.value?.filter(val);
 });
 
 onMounted(() => {
@@ -186,7 +188,7 @@ function departmentTreeNodeClick(
   emits('selectionChange', departmentSelection.value);
 }
 
-function updateKeyChildren(key: string, data: SelectDepartmentTreeItemType) {
+function updateKeyChildren(key: string, data: SelectDepartmentTreeItemType[]) {
   return DepartmentTreeRef?.value?.updateKeyChildren(key, data);
 }
 
@@ -197,8 +199,10 @@ function getCheckedNodes(leafOnly: boolean, includeHalfChecked: boolean) {
   );
 }
 
-function setCheckedNodes(nodes: SelectDepartmentTreeItemType) {
-  return DepartmentTreeRef?.value?.setCheckedNodes(nodes);
+function setCheckedNodes(nodes: SelectDepartmentTreeItemType[]) {
+  return DepartmentTreeRef?.value?.setCheckedNodes(
+    nodes as unknown as TreeNodeType[]
+  );
 }
 
 function getCheckedKeys(leafOnly: boolean) {

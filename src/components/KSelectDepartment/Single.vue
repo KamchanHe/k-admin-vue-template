@@ -83,7 +83,7 @@ const emits = defineEmits(['confirm']);
 
 const tableHeader = ref($tableHeader);
 const tableData = ref<DepartmentTreeItemType[]>([]);
-const KTableRef = ref();
+const KTableRef = ref<InstanceType<typeof KTable>>();
 interface SearchFormType {
   departmentName?: string;
   departmentCode?: string;

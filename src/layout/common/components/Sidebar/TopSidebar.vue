@@ -108,14 +108,14 @@ const moreRoutes = computed(() => {
 
 // menu-item widths
 const widthData = ref<number[]>([]);
-const TopSidebarBoxMenuRef = ref();
+const TopSidebarBoxMenuRef = ref<HTMLDivElement>();
 
 let calculateTimer: ReturnType<typeof setTimeout>;
 function calculateModuleNavigationWidth() {
   nextTick(() => {
-    const elMenu = TopSidebarBoxMenuRef.value.querySelector('.el-menu');
-    const { children } = elMenu;
-    if (children.length !== routes.value.length) {
+    const elMenu = TopSidebarBoxMenuRef.value?.querySelector('.el-menu');
+    const { children } = elMenu || {};
+    if (children?.length !== routes.value.length) {
       clearTimeout(calculateTimer);
       calculateTimer = setTimeout(() => {
         calculateModuleNavigationWidth();
@@ -134,9 +134,13 @@ function calculateModuleNavigationWidth() {
 }
 
 function setModuleNavigationView() {
-  const parentWidth = TopSidebarBoxMenuRef.value.clientWidth;
+  const parentWidth = TopSidebarBoxMenuRef.value?.clientWidth;
   let total = 0;
   let limit = -1;
+  if (!parentWidth) {
+    limitIndex.value = limit;
+    return;
+  }
   for (let index = 0; index < widthData.value.length; index += 1) {
     const width = widthData.value[index];
     total += width;

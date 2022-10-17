@@ -39,6 +39,12 @@ import type { FormInstance, FormRules } from 'element-plus';
 import { $roleItemMap } from '@/constant/bi-map/organization.js';
 import { BiMapConversion } from '@/utils/bi-map.js';
 
+export interface MixinDataType {
+  id: string;
+  roleName?: string;
+  enable?: 0 | 1;
+}
+
 const emits = defineEmits(['cancel', 'confirm']);
 
 // 表单
@@ -52,8 +58,8 @@ const formDataRules = reactive<FormRules>({
   roleName: [{ required: true, message: '请输入角色名称', trigger: 'blur' }]
 });
 
-function handleMixin(mixinData = {}) {
-  _assign(formData, mixinData);
+function handleMixin(mixinData: MixinDataType) {
+  _assign(formData, mixinData || {});
   const { id } = formData;
   if (id) {
     getDetail();

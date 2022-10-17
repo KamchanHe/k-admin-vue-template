@@ -2,7 +2,7 @@
   <div v-if="!item.meta || !item.meta.hidden">
     <template v-if="isMenuItem">
       <SidebarLink
-        v-if="onlyOneChild.meta"
+        v-if="onlyOneChild?.meta"
         :to="resolvePath(onlyOneChild.path)"
       >
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
@@ -53,7 +53,10 @@ interface PropsState {
 }
 const props = withDefaults(defineProps<PropsState>(), {});
 
-const onlyOneChild = ref();
+type OnlyOneChildType = RouteRecordRaw & {
+  noShowingChildren?: boolean;
+};
+const onlyOneChild = ref<OnlyOneChildType>();
 
 function hasOneShowingChild(
   children: RouteRecordRaw[] | undefined,
@@ -88,7 +91,7 @@ function hasOneShowingChild(
 const isMenuItem = computed(() => {
   const isOneShowingChild = hasOneShowingChild(props.item.children, props.item);
   const subLevelNoChild =
-    !onlyOneChild.value.children || onlyOneChild.value.noShowingChildren;
+    !onlyOneChild.value?.children || onlyOneChild.value?.noShowingChildren;
   const noAlwaysShow = !props.item.meta || !props.item.meta.alwaysShow;
   return isOneShowingChild && subLevelNoChild && noAlwaysShow;
 });

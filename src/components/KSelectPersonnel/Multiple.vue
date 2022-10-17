@@ -78,7 +78,7 @@ import { $selectPersonnelItemMap } from '@/constant/bi-map/organization-select';
 
 // eslint-disable-next-line no-unused-vars
 interface Props {
-  departmentSelectType?: 'single' | 'multiple';
+  departmentSelectType: 'single' | 'multiple';
   defaultSelection?: SelectPersonnelListItemType[];
 }
 const props = withDefaults(defineProps<Props>(), {

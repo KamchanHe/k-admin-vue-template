@@ -59,6 +59,7 @@ import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
 import KPagination from '@/components/KPagination/index.vue';
 import KSelectPersonnel from '@/components/KSelectPersonnel/index.vue';
+import type { OnConfirmType } from '@/components/KSelectPersonnel/index.vue';
 
 import { withLoading } from '@/utils/with-loading';
 import { BiMapConversion } from '@/utils/bi-map';
@@ -82,7 +83,7 @@ const activeId = computed(() => {
   return targetActiveID;
 });
 
-const KTableRef = ref();
+const KTableRef = ref<InstanceType<typeof KTable>>();
 const tableHeader = ref($tableHeader);
 const tableData = ref<PersonnelPageItemType[]>([]);
 const pageSize = ref(10);
@@ -139,16 +140,14 @@ function selectionChange(value: PersonnelPageItemType[]) {
   selection.value = value;
 }
 
-const KSelectPersonnelMultipleRef = ref();
+const KSelectPersonnelMultipleRef =
+  ref<InstanceType<typeof KSelectPersonnel>>();
 function handleAdd() {
-  KSelectPersonnelMultipleRef.value?.open();
+  KSelectPersonnelMultipleRef.value?.open({});
 }
-interface ConfirmAddParamType {
-  done: () => void;
-  selection: PersonnelPageItemType[];
-}
-function confirmAdd({ done, selection: value }: ConfirmAddParamType) {
-  const ids = _map(value, 'id');
+
+const confirmAdd: OnConfirmType = ({ done, selection: value }) => {
+  const ids = _map(value as [], 'id');
   if (!activeId.value) return;
   withLoading(apiSaveRolePersonnel)({
     roleId: activeId.value,
@@ -158,7 +157,7 @@ function confirmAdd({ done, selection: value }: ConfirmAddParamType) {
     done();
     handleGetTableData();
   });
-}
+};
 
 function handleDelete() {
   const isEmpty = _isEmpty(selection.value);
