@@ -37,11 +37,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
 import KPagination from '@/components/KPagination/index.vue';
 import { getTablePage } from '@/api/table';
 import type { TablePageItemType } from '@/types/api/table';
+import type { KPaginationParamType } from '@/types/components/k-pagination';
 import { withLoading } from '@/utils/with-loading';
 import { $tableHeader } from '@/constant/table-header/table';
 
@@ -71,7 +73,7 @@ const fetchData = () => {
     total.value = totalNum;
   });
 };
-const paginationChange = (params: { page: number; limit: number }) => {
+const paginationChange = (params: KPaginationParamType) => {
   pageNum.value = params.page;
   pageSize.value = params.limit;
   // 使用防抖函数 防止多次请求

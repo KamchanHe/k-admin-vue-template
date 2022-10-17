@@ -15,7 +15,7 @@ interface LoadingOptions {
   lock?: boolean;
   text?: string;
   background?: string;
-  target?: string;
+  target?: HTMLElement | string;
   body?: boolean;
   fullscreen?: boolean;
   spinner?: string;
@@ -25,7 +25,8 @@ interface LoadingOptions {
 const defaultOptions: LoadingOptions = {
   lock: true,
   text: '加载中...',
-  background: 'rgba(0, 0, 0, 0.1)'
+  background: 'rgba(0, 0, 0, 0.1)',
+  target: document.body
 };
 /**
  * 传入一个方法fn,在它执行周期内,加上全屏loading

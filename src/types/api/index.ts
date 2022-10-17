@@ -3,7 +3,7 @@ export interface PaginationRequestType {
   pageNum: number;
 }
 
-export interface PaginationResponseType<T> {
+export interface PaginationResponseType<T = unknown> {
   total: number;
   totalPage: number;
   pageNum: number;
