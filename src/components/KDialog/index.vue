@@ -32,6 +32,15 @@
 <script setup lang="ts">
 import { isFunction as _isFunction } from 'lodash-es';
 
+export interface OnConfirmParamType {
+  done: () => void;
+}
+export interface OnCancelParamType {
+  done: () => void;
+}
+export type OnConfirmType = ({ done }: OnConfirmParamType) => void;
+export type OnCancelType = ({ done }: OnCancelParamType) => void;
+
 type CommonFunctionType = () => void;
 
 interface Props {
