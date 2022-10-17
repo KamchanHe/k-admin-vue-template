@@ -187,5 +187,9 @@ export default {
 <style lang="scss">
 .k-header-search-form.el-form--inline .el-form-item {
   margin-right: 10px;
+
+  .el-input {
+    width: 180px;
+  }
 }
 </style>

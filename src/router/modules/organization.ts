@@ -20,6 +20,15 @@ export const organizationRoutes: RouteRecordRaw[] = [
         meta: {
           title: '部门管理'
         }
+      },
+      {
+        path: '/personnel-management',
+        name: 'PersonnelManagement',
+        component: () =>
+          import('@/views/organization/personnel-management/index.vue'),
+        meta: {
+          title: '人员管理'
+        }
       }
     ]
   }
