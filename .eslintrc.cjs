@@ -1,4 +1,3 @@
-const path = require('path');
 module.exports = {
   root: true,
   env: {
@@ -57,6 +56,7 @@ module.exports = {
     // typescript
     '@typescript-eslint/no-this-alias': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/no-empty-interface': 'off'
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
   }
 };
