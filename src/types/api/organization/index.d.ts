@@ -52,7 +52,7 @@ export type GetPersonnelListResponse = PersonnelListItemType[];
 export interface RoleItemBaseType {
   id: string;
   enable: 0 | 1;
-  isDefault: 0 | 1;
+  isDefault?: 0 | 1;
   roleName: string;
 }
 export interface GetRoleListRequest {}
@@ -61,7 +61,7 @@ export type GetRoleListResponse = RoleListItemType[];
 
 export type GetRoleDetailRequest = string;
 export interface GetRoleDetailResponse extends RoleItemBaseType {
-  menuSelection: PermissionItemBaseType[];
+  menuSelection: MenuItemBaseType[];
 }
 
 export interface CreateRoleRequest {
@@ -93,15 +93,21 @@ export interface RemoveRolePersonnelRequest {
 export interface RemoveRolePersonnelResponse {}
 
 // permission
-export interface PermissionItemBaseType {
+export interface MenuItemBaseType {
   id: string;
   permissionName: string;
   parentId: string;
-  clientType: 0 | 1;
+}
+export interface PermissionItemType extends MenuItemBaseType {
+  children: PermissionItemType[];
+  clientType?: 0 | 1;
+}
+export interface MenuTreeItemType extends MenuItemBaseType {
+  children: MenuTreeItemType[];
 }
 
 export interface GetMenuTreeRequest {}
-export type GetMenuTreeResponse = PermissionItemBaseType[];
+export type GetMenuTreeResponse = PermissionItemType[];
 
 export interface SaveRoleMenuRequest {
   clientType: 0 | 1;

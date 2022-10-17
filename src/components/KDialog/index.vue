@@ -71,7 +71,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: '50%',
   minWidth: 'auto',
   maxWidth: 'auto',
-  height: '50%',
+  height: 'auto',
   minHeight: 'auto',
   maxHeight: 'auto'
 });

@@ -13,7 +13,9 @@ declare module '@vue/runtime-core' {
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb'];
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem'];
     ElButton: typeof import('element-plus/es')['ElButton'];
+    ElCard: typeof import('element-plus/es')['ElCard'];
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox'];
+    ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup'];
     ElCol: typeof import('element-plus/es')['ElCol'];
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker'];
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider'];
@@ -24,12 +26,15 @@ declare module '@vue/runtime-core' {
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];
+    ElIcon: typeof import('element-plus/es')['ElIcon'];
     ElImage: typeof import('element-plus/es')['ElImage'];
     ElInput: typeof import('element-plus/es')['ElInput'];
     ElMenu: typeof import('element-plus/es')['ElMenu'];
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem'];
     ElOption: typeof import('element-plus/es')['ElOption'];
     ElPagination: typeof import('element-plus/es')['ElPagination'];
+    ElPopover: typeof import('element-plus/es')['ElPopover'];
+    ElRadio: typeof import('element-plus/es')['ElRadio'];
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton'];
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup'];
     ElRow: typeof import('element-plus/es')['ElRow'];
@@ -39,6 +44,9 @@ declare module '@vue/runtime-core' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch'];
     ElTable: typeof import('element-plus/es')['ElTable'];
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
+    ElTabPane: typeof import('element-plus/es')['ElTabPane'];
+    ElTabs: typeof import('element-plus/es')['ElTabs'];
+    ElTag: typeof import('element-plus/es')['ElTag'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
     ElTransfer: typeof import('element-plus/es')['ElTransfer'];
     ElTree: typeof import('element-plus/es')['ElTree'];

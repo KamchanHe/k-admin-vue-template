@@ -1368,7 +1368,7 @@ const getPersonnelPage: MockMethodType = {
 };
 
 const getRoleList: MockMethodType = {
-  url: 'sys/role/list',
+  url: '/k-admin-template/sys/role/list',
   method: 'get',
   response: () => {
     return {
@@ -1416,7 +1416,7 @@ const getRoleList: MockMethodType = {
 };
 
 const getRoleDetail: MockMethodType = {
-  url: '/sys/role/:id',
+  url: '/k-admin-template/sys/role/:id',
   method: 'get',
   response: () => {
     return {
@@ -1479,7 +1479,7 @@ const getRoleDetail: MockMethodType = {
 };
 
 const createRole: MockMethodType = {
-  url: 'sys/role/save',
+  url: '/k-admin-template/sys/role/save',
   method: 'post',
   response: () => {
     return {
@@ -1491,7 +1491,7 @@ const createRole: MockMethodType = {
 };
 
 const updateRole: MockMethodType = {
-  url: 'sys/role/updateById',
+  url: '/k-admin-template/sys/role/updateById',
   method: 'post',
   response: () => {
     return {
@@ -1503,7 +1503,7 @@ const updateRole: MockMethodType = {
 };
 
 const deleteRole: MockMethodType = {
-  url: 'sys/role/deleteById/:id',
+  url: '/k-admin-template/sys/role/deleteById/:id',
   method: 'post',
   response: () => {
     return {
@@ -1515,7 +1515,7 @@ const deleteRole: MockMethodType = {
 };
 
 const saveRolePersonnel: MockMethodType = {
-  url: 'sys/role/saveUserRole',
+  url: '/k-admin-template/sys/role/saveUserRole',
   method: 'post',
   response: () => {
     return {
@@ -1527,7 +1527,7 @@ const saveRolePersonnel: MockMethodType = {
 };
 
 const removeRolePersonnel: MockMethodType = {
-  url: 'sys/role/removeUserRole',
+  url: '/k-admin-template/sys/role/removeUserRole',
   method: 'post',
   response: () => {
     return {
@@ -1539,7 +1539,7 @@ const removeRolePersonnel: MockMethodType = {
 };
 
 const getMenuTree: MockMethodType = {
-  url: 'sys/menu/tree',
+  url: '/k-admin-template/sys/menu/tree',
   method: 'get',
   response: () => {
     return {
@@ -1953,7 +1953,7 @@ const getMenuTree: MockMethodType = {
 };
 
 const saveRoleMenu: MockMethodType = {
-  url: 'sys/role/saveRoleMenu',
+  url: '/k-admin-template/sys/role/saveRoleMenu',
   method: 'post',
   response: () => {
     return {

@@ -29,6 +29,15 @@ export const organizationRoutes: RouteRecordRaw[] = [
         meta: {
           title: '人员管理'
         }
+      },
+      {
+        path: '/permission-management',
+        name: 'PermissionManagement',
+        component: () =>
+          import('@/views/organization/permission-management/index.vue'),
+        meta: {
+          title: '权限管理'
+        }
       }
     ]
   }
