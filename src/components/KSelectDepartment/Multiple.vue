@@ -92,8 +92,7 @@ watch(
 );
 
 onMounted(() => {
-  const { defaultSelection } = props;
-  setDefaultSelection(defaultSelection);
+  setDefaultSelection(props.defaultSelection);
 });
 
 function setDefaultSelection(selection: DepartmentTreeItemType[]) {

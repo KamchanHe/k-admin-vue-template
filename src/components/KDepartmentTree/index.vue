@@ -169,8 +169,7 @@ function departmentTreeCheck(
   target: SelectDepartmentTreeItemType,
   checkedData: CheckedDataType<SelectDepartmentTreeItemType>
 ) {
-  const { departmentSelectType } = props;
-  if (departmentSelectType === 'single') return;
+  if (props.departmentSelectType === 'single') return;
   emits('treeCheck', target, checkedData);
   const { checkedNodes } = checkedData;
   departmentSelection.value = checkedNodes;
@@ -182,8 +181,7 @@ function departmentTreeNodeClick(
   node: TreeNodeDataType
 ) {
   emits('treeNodeClick', target, node);
-  const { departmentSelectType } = props;
-  if (departmentSelectType === 'multiple') return;
+  if (props.departmentSelectType === 'multiple') return;
   departmentSelection.value = [target];
   emits('selectionChange', departmentSelection.value);
 }

@@ -4,7 +4,7 @@
       <div class="group-item-name">
         <el-checkbox
           :disabled="checkAllDisabled"
-          :value="isCheckAll"
+          :model-value="isCheckAll"
           :indeterminate="isIndeterminate"
           @change="checkAllChange"
         >
@@ -49,8 +49,7 @@ const props = defineProps({
 });
 
 const children = computed(() => {
-  const { item = {} } = props;
-  const { children: targetChildren = [] } = item;
+  const { children: targetChildren = [] } = props.item;
   return targetChildren;
 });
 
@@ -78,8 +77,7 @@ const isIndeterminate = computed(() => {
 const isCheckAll = computed(() => {
   const isEmpty = _isEmpty(children.value);
   if (isEmpty) return false;
-  const { allPermission = [] } = props;
-  const total = allPermission.length;
+  const total = props.allPermission.length;
   const selectionTotal = selection.value.length;
   return total === selectionTotal;
 });
@@ -87,8 +85,7 @@ const isCheckAll = computed(() => {
 function checkAllChange(value: boolean) {
   const flag = isIndeterminate.value ? true : value;
   if (flag) {
-    const { allPermission } = props;
-    selection.value = [...allPermission];
+    selection.value = [...props.allPermission];
   } else {
     selection.value = [];
   }

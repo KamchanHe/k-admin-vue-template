@@ -38,7 +38,8 @@
           :sortable="item.sortable"
           :show-overflow-tooltip="item.ellipsis !== false"
         >
-          <template #header>
+          <!-- eslint-disable-next-line vue/no-unused-vars -->
+          <template #header="scope">
             <slot :name="`${item.prop}-header`" :target="item">
               <span>{{ item.label }}</span>
             </slot>

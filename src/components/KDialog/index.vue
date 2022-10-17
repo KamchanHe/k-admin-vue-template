@@ -92,10 +92,9 @@ function done() {
 }
 
 function cancel() {
-  const { onCancel } = props;
-  const isFunction = _isFunction(onCancel);
+  const isFunction = _isFunction(props.onCancel);
   if (isFunction) {
-    onCancel({ done });
+    props.onCancel({ done });
   } else {
     emits('cancel');
     done();
@@ -103,10 +102,9 @@ function cancel() {
 }
 
 function confirm() {
-  const { onConfirm } = props;
-  const isFunction = _isFunction(onConfirm);
+  const isFunction = _isFunction(props.onConfirm);
   if (isFunction) {
-    onConfirm({ done });
+    props.onConfirm({ done });
   } else {
     emits('confirm');
     done();
