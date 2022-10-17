@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "@types/node": "18.8.0",
     "@vueuse/core": "^9.3.1",
     "axios": "1.1.3",
     "dayjs": "^1.11.5",
@@ -49,7 +50,6 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
     "@types/mockjs": "^1.0.7",
-    "@types/node": "18.11.0",
     "@types/nprogress": "^0.2.0",
     "@types/path-browserify": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
