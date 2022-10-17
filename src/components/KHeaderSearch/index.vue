@@ -11,11 +11,15 @@
     <slot />
     <el-form-item>
       <el-badge :value="searchActiveCount">
-        <el-button type="primary" @click="handleSearch">查找</el-button>
+        <slot name="search">
+          <el-button type="primary" @click="handleSearch">查找</el-button>
+        </slot>
       </el-badge>
     </el-form-item>
     <el-form-item>
-      <el-button @click="handleReset">重置</el-button>
+      <slot name="reset">
+        <el-button @click="handleReset">重置</el-button>
+      </slot>
     </el-form-item>
     <slot name="action" />
     <el-form-item>

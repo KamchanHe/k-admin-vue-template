@@ -1367,9 +1367,615 @@ const getPersonnelPage: MockMethodType = {
   }
 };
 
+const getRoleList: MockMethodType = {
+  url: 'sys/role/list',
+  method: 'get',
+  response: () => {
+    return {
+      code: 200,
+      data: [
+        {
+          id: '1',
+          name: '系统默认',
+          enable: 1,
+          isDefault: 1,
+          userVisible: 0,
+          createTime: '2022-03-11 18:13:34',
+          updateTime: '2022-03-29 10:57:08',
+          createBy: null,
+          updateBy: '1',
+          menuList: null
+        },
+        {
+          id: '83982e00fbd677a1ac6b0a884953fe9b',
+          name: '测试',
+          enable: 1,
+          isDefault: 0,
+          userVisible: 0,
+          createTime: '2022-10-17 10:21:35',
+          updateTime: '2022-10-17 02:21:35',
+          createBy: '1',
+          updateBy: null,
+          menuList: null
+        },
+        {
+          id: 'd22481eb2a295c65dccbaecfcf051c0a',
+          name: '测试角色',
+          enable: 1,
+          isDefault: 0,
+          userVisible: 1,
+          createTime: '2022-05-17 15:54:32',
+          updateTime: '2022-10-17 10:20:46',
+          createBy: '1',
+          updateBy: '1',
+          menuList: null
+        }
+      ]
+    };
+  }
+};
+
+const getRoleDetail: MockMethodType = {
+  url: '/sys/role/:id',
+  method: 'get',
+  response: () => {
+    return {
+      code: 200,
+      data: {
+        id: '1',
+        name: '系统默认',
+        enable: 1,
+        isDefault: 1,
+        userVisible: 0,
+        createTime: '2022-03-11 18:13:34',
+        updateTime: '2022-03-29 10:57:08',
+        createBy: null,
+        updateBy: '1',
+        menuList: [
+          {
+            id: '170100',
+            name: '查看班级管理页',
+            sort: 0,
+            pid: '170000',
+            type: 0,
+            hideFlag: 0,
+            clientType: 0,
+            permitIds: null
+          },
+          {
+            id: '170200',
+            name: '新建班级',
+            sort: 0,
+            pid: '170000',
+            type: 1,
+            hideFlag: 0,
+            clientType: 0,
+            permitIds: null
+          },
+          {
+            id: '170300',
+            name: '编辑班级',
+            sort: 0,
+            pid: '170000',
+            type: 1,
+            hideFlag: 0,
+            clientType: 0,
+            permitIds: null
+          },
+          {
+            id: '170400',
+            name: '删除班级',
+            sort: 0,
+            pid: '170000',
+            type: 1,
+            hideFlag: 0,
+            clientType: 0,
+            permitIds: null
+          }
+        ]
+      }
+    };
+  }
+};
+
+const createRole: MockMethodType = {
+  url: 'sys/role/save',
+  method: 'post',
+  response: () => {
+    return {
+      code: 200,
+      data: null,
+      message: '操作成功'
+    };
+  }
+};
+
+const updateRole: MockMethodType = {
+  url: 'sys/role/updateById',
+  method: 'post',
+  response: () => {
+    return {
+      code: 200,
+      data: null,
+      message: '操作成功'
+    };
+  }
+};
+
+const deleteRole: MockMethodType = {
+  url: 'sys/role/deleteById/:id',
+  method: 'post',
+  response: () => {
+    return {
+      code: 200,
+      data: null,
+      message: '操作成功'
+    };
+  }
+};
+
+const saveRolePersonnel: MockMethodType = {
+  url: 'sys/role/saveUserRole',
+  method: 'post',
+  response: () => {
+    return {
+      code: 200,
+      data: null,
+      message: '操作成功'
+    };
+  }
+};
+
+const removeRolePersonnel: MockMethodType = {
+  url: 'sys/role/removeUserRole',
+  method: 'post',
+  response: () => {
+    return {
+      code: 200,
+      data: null,
+      message: '操作成功'
+    };
+  }
+};
+
+const getMenuTree: MockMethodType = {
+  url: 'sys/menu/tree',
+  method: 'get',
+  response: () => {
+    return {
+      code: 200,
+      data: [
+        {
+          id: '160000',
+          parentId: '0',
+          sort: 1,
+          children: [
+            {
+              id: '160100',
+              parentId: '160000',
+              sort: 0,
+              children: null,
+              name: '查看年级管理页',
+              pid: '160000',
+              type: 0
+            },
+            {
+              id: '160200',
+              parentId: '160000',
+              sort: 0,
+              children: null,
+              name: '新建年级',
+              pid: '160000',
+              type: 1
+            },
+            {
+              id: '160300',
+              parentId: '160000',
+              sort: 0,
+              children: null,
+              name: '编辑年级',
+              pid: '160000',
+              type: 1
+            },
+            {
+              id: '160400',
+              parentId: '160000',
+              sort: 0,
+              children: null,
+              name: '删除年级',
+              pid: '160000',
+              type: 1
+            },
+            {
+              id: '160500',
+              parentId: '160000',
+              sort: 0,
+              children: null,
+              name: '毕业年级',
+              pid: '160000',
+              type: 1
+            },
+            {
+              id: '160600',
+              parentId: '160000',
+              sort: 0,
+              children: null,
+              name: '年级升迁',
+              pid: '160000',
+              type: 1
+            }
+          ],
+          name: '年级管理',
+          pid: '0',
+          type: 0
+        },
+        {
+          id: '170000',
+          parentId: '0',
+          sort: 2,
+          children: [
+            {
+              id: '170100',
+              parentId: '170000',
+              sort: 0,
+              children: null,
+              name: '查看班级管理页',
+              pid: '170000',
+              type: 0
+            },
+            {
+              id: '170200',
+              parentId: '170000',
+              sort: 0,
+              children: null,
+              name: '新建班级',
+              pid: '170000',
+              type: 1
+            },
+            {
+              id: '170300',
+              parentId: '170000',
+              sort: 0,
+              children: null,
+              name: '编辑班级',
+              pid: '170000',
+              type: 1
+            },
+            {
+              id: '170400',
+              parentId: '170000',
+              sort: 0,
+              children: null,
+              name: '删除班级',
+              pid: '170000',
+              type: 1
+            }
+          ],
+          name: '班级管理',
+          pid: '0',
+          type: 0
+        },
+        {
+          id: '180000',
+          parentId: '0',
+          sort: 3,
+          children: [
+            {
+              id: '180100',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '查看学生花名册页',
+              pid: '180000',
+              type: 0
+            },
+            {
+              id: '180200',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '下载Excel模版',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180300',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '导入Excel',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180400',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '全部导出Excel',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180500',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '新建学生',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180600',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '查看详情页',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180700',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '删除学生',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180800',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '修改学生资料',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '180900',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '办理学生调班',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '181000',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '办理学生毕业',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '181100',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '办理学生休学',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '181200',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '办理学生复学',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '181300',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '办理学生转学',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '181400',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '办理学生肄业',
+              pid: '180000',
+              type: 1
+            },
+            {
+              id: '181500',
+              parentId: '180000',
+              sort: 0,
+              children: null,
+              name: '选择导出Excel',
+              pid: '180000',
+              type: 1
+            }
+          ],
+          name: '学生花名册',
+          pid: '0',
+          type: 0
+        },
+        {
+          id: '590000',
+          parentId: '0',
+          sort: 3,
+          children: [
+            {
+              id: '590100',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看学生资助页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590200',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看学生处分页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590300',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看学生奖励页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590400',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看德育项目管理页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590500',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看学生德育页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590600',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看学生考勤页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590700',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '查看学生健康页面',
+              pid: '590000',
+              type: 0
+            },
+            {
+              id: '590800',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '操作学生资助',
+              pid: '590000',
+              type: 1
+            },
+            {
+              id: '590900',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '操作学生处分',
+              pid: '590000',
+              type: 1
+            },
+            {
+              id: '591000',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '操作学生奖励',
+              pid: '590000',
+              type: 1
+            },
+            {
+              id: '591100',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '操作学生德育',
+              pid: '590000',
+              type: 1
+            },
+            {
+              id: '591200',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '操作学生考勤',
+              pid: '590000',
+              type: 1
+            },
+            {
+              id: '591300',
+              parentId: '590000',
+              sort: 0,
+              children: null,
+              name: '操作学生健康',
+              pid: '590000',
+              type: 1
+            }
+          ],
+          name: '学生管理相关',
+          pid: '0',
+          type: 0
+        },
+        {
+          id: '640000',
+          parentId: '0',
+          sort: 3,
+          children: [
+            {
+              id: '640100',
+              parentId: '640000',
+              sort: 0,
+              children: null,
+              name: '查看学生分班管理页',
+              pid: '640000',
+              type: 0
+            }
+          ],
+          name: '学生分班管理',
+          pid: '0',
+          type: 0
+        }
+      ],
+      message: '操作成功'
+    };
+  }
+};
+
+const saveRoleMenu: MockMethodType = {
+  url: 'sys/role/saveRoleMenu',
+  method: 'post',
+  response: () => {
+    return {
+      code: 200,
+      data: null,
+      message: '操作成功'
+    };
+  }
+};
+
 export default [
   getTenantList,
   getDepartmentTree,
   getPersonnelList,
-  getPersonnelPage
+  getPersonnelPage,
+  getRoleList,
+  getRoleDetail,
+  createRole,
+  updateRole,
+  deleteRole,
+  saveRolePersonnel,
+  removeRolePersonnel,
+  getMenuTree,
+  saveRoleMenu
 ];

@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable'];
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];
+    ElTransfer: typeof import('element-plus/es')['ElTransfer'];
     ElTree: typeof import('element-plus/es')['ElTree'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];

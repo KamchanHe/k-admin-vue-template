@@ -88,8 +88,6 @@ export default {
 
 <style lang="scss" scoped>
 .container-box {
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
 }
 

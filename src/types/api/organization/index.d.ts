@@ -1,5 +1,6 @@
 import type { PaginationRequestType, PaginationResponseType } from '../index';
 
+// tenant
 export interface GetTenantListRequest {}
 export interface TenantItemBaseType {
   id: string;
@@ -8,6 +9,7 @@ export interface TenantItemBaseType {
 export interface TenantListItemType extends TenantItemBaseType {}
 export type GetTenantListResponse = TenantListItemType[];
 
+// department
 export interface DepartmentItemBaseType {
   id: string;
   departmentCode: string;
@@ -19,6 +21,7 @@ export interface DepartmentTreeItemType extends DepartmentItemBaseType {
 }
 export type GetDepartmentTreeResponse = DepartmentTreeItemType[];
 
+// personnel
 export interface PersonnelItemBaseType {
   id: string;
   personnelAccount: string;
@@ -44,3 +47,65 @@ export interface GetPersonnelPageResponse
 export interface GetPersonnelListRequest extends PersonnelParamsBaseType {}
 export interface PersonnelListItemType extends PersonnelItemBaseType {}
 export type GetPersonnelListResponse = PersonnelListItemType[];
+
+// role
+export interface RoleItemBaseType {
+  id: string;
+  enable: 0 | 1;
+  isDefault: 0 | 1;
+  roleName: string;
+}
+export interface GetRoleListRequest {}
+export interface RoleListItemType extends RoleItemBaseType {}
+export type GetRoleListResponse = RoleListItemType[];
+
+export type GetRoleDetailRequest = string;
+export interface GetRoleDetailResponse extends RoleItemBaseType {
+  menuSelection: PermissionItemBaseType[];
+}
+
+export interface CreateRoleRequest {
+  enable: 0 | 1;
+  name: string;
+}
+export interface CreateRoleResponse {}
+
+export interface UpdateRoleRequest {
+  id: string;
+  enable: 0 | 1;
+  name: string;
+}
+export interface UpdateRoleResponse {}
+
+export type DeleteRoleRequest = string;
+export interface DeleteRoleResponse {}
+
+export interface SaveRolePersonnelRequest {
+  roleId: string;
+  userIds: string[];
+}
+export interface SaveRolePersonnelResponse {}
+
+export interface RemoveRolePersonnelRequest {
+  roleId: string;
+  userIds: string[];
+}
+export interface RemoveRolePersonnelResponse {}
+
+// permission
+export interface PermissionItemBaseType {
+  id: string;
+  permissionName: string;
+  parentId: string;
+  clientType: 0 | 1;
+}
+
+export interface GetMenuTreeRequest {}
+export type GetMenuTreeResponse = PermissionItemBaseType[];
+
+export interface SaveRoleMenuRequest {
+  clientType: 0 | 1;
+  menuIds: string[];
+  roleId: string;
+}
+export interface SaveRoleMenuResponse {}

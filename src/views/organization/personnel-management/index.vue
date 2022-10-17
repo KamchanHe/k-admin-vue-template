@@ -138,11 +138,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container-box {
-  display: flex;
-  flex-direction: column;
-}
-
 .flex-box {
   display: flex;
   flex: 1;

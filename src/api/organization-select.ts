@@ -17,7 +17,7 @@ export function getSelectPersonnelList<
   Q extends GetSelectPersonnelListRequest,
   S extends GetSelectPersonnelListResponse
 >(data?: Q) {
-  return Service.get<Q, S>('sys/dept/tree', data);
+  return Service.get<Q, S>('sys/user/list', data);
 }
 
 export default {};

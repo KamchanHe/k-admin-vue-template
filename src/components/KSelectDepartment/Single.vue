@@ -39,11 +39,22 @@
       :table-data="tableData"
       height="100%"
     >
+      <el-table-column width="120px" align="center">
+        <template #header>
+          <span>操作</span>
+        </template>
+        <template #default="scope">
+          <el-button plain type="primary" @click="confirm(scope.row)">
+            选择
+          </el-button>
+        </template>
+      </el-table-column>
     </KTable>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
 import { withLoading } from '@/utils/with-loading';
@@ -52,7 +63,6 @@ import type { DepartmentTreeItemType } from '@/types/api/organization';
 import { $departmentManagementTableHeader as $tableHeader } from '@/constant/table-header/organization';
 import { $departmentItemMap } from '@/constant/bi-map/organization';
 import { BiMapConversion } from '@/utils/bi-map';
-
 import {
   map as _map,
   forEach as _forEach,
@@ -64,9 +74,16 @@ import {
   every as _every
 } from 'lodash-es';
 
-const tableHeader = ref($tableHeader); // 表头
-const tableData = ref<DepartmentTreeItemType[]>([]); // 表体
-// 搜索参数
+defineProps({
+  departmentSelectType: {
+    type: String
+  }
+});
+const emits = defineEmits(['confirm']);
+
+const tableHeader = ref($tableHeader);
+const tableData = ref<DepartmentTreeItemType[]>([]);
+const KTableRef = ref();
 interface SearchFormType {
   departmentName?: string;
   departmentCode?: string;
@@ -80,9 +97,9 @@ onMounted(() => {
   handleGetTableData();
 });
 
-function handleSearch() {
+const handleSearch = () => {
   handleGetTableData();
-}
+};
 
 function handleGetTableData() {
   withLoading(apiGetTableData)().then((res) => {
@@ -93,11 +110,11 @@ function handleGetTableData() {
 }
 
 function recursionConversion(
-  data: DepartmentTreeItemType[],
+  data: DepartmentTreeItemType[] = [],
   map = $departmentItemMap
 ) {
-  const biMapData = BiMapConversion(data || [], map);
-  return _map(biMapData, (item) => {
+  const conversionData = BiMapConversion(data || [], map);
+  return _map(conversionData, (item) => {
     const { children } = item;
     if (children) {
       item.children = recursionConversion(children, map);
@@ -106,7 +123,6 @@ function recursionConversion(
   });
 }
 
-const KTableRef = ref();
 function handleToggleUnFold(flag: boolean, data = tableData.value) {
   _forEach(data, (item) => {
     KTableRef.value?.toggleRowExpansion(item, flag);
@@ -146,22 +162,29 @@ function tableDataRecursionFilter(
     return isTarget || !_isEmpty(item.children);
   });
 }
+
+function confirm(row: DepartmentTreeItemType) {
+  emits('confirm', row);
+}
 </script>
 
 <script lang="ts">
 export default {
-  name: 'DepartmentManagement'
+  name: 'Single'
 };
 </script>
 
-<style scoped lang="scss">
-.table-box {
-  flex: 1;
-  width: 100%;
-  overflow: hidden;
+<style lang="scss" scoped>
+.container-box {
+  padding: 0;
 
-  :deep(.el-table__placeholder) {
-    display: inline;
+  .table-box {
+    flex: 1;
+    overflow: hidden;
+
+    :deep(.el-table__placeholder) {
+      display: inline;
+    }
   }
 }
 </style>

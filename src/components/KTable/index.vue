@@ -149,28 +149,25 @@ const getHeaderTarget = (prop: string) => {
   return _find(props.tableHeader, ['prop', prop]);
 };
 
-const rowLabel = computed(
-  () => (scope: ScopeType<TableHeaderType, RowType>) => {
-    const { row, column } = scope;
-    const { property } = column;
-    const label = (row as any)[property];
-    const target = getHeaderTarget(property);
-    let result: string | number = label;
-    const { decimalDigits, timeFormat, transformType, transform } =
-      target || {};
-    if (decimalDigits && _isNumber(label)) {
-      result = Number(label).toFixed(decimalDigits);
-    }
-    if (timeFormat) {
-      result = dayjs(label).format(timeFormat);
-    }
-    if (transformType && transform) {
-      const transformTarget = _find(transform, ['value', label]);
-      result = transformTarget?.label || label;
-    }
-    return result;
+const rowLabel = computed(() => (scope: ScopeType<RowType>) => {
+  const { row, column } = scope;
+  const { property } = column;
+  const label = (row as any)[property];
+  const target = getHeaderTarget(property);
+  let result: string | number = label;
+  const { decimalDigits, timeFormat, transformType, transform } = target || {};
+  if (decimalDigits && _isNumber(label)) {
+    result = Number(label).toFixed(decimalDigits);
   }
-);
+  if (timeFormat) {
+    result = dayjs(label).format(timeFormat);
+  }
+  if (transformType && transform) {
+    const transformTarget = _find(transform, ['value', label]);
+    result = transformTarget?.label || label;
+  }
+  return result;
+});
 
 const defaultSummaryMethod: SummaryMethodType<RowType> = (param) => {
   const { columns, data } = param;
