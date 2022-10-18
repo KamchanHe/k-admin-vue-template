@@ -32,10 +32,12 @@ export interface MixinDataType {
   title?: string;
   defaultSelection?: SelectDepartmentTreeItemType[];
 }
-export interface ConfirmParamType {
-  selection: SelectDepartmentTreeItemType | SelectDepartmentTreeItemType[];
-}
-export interface OnConfirmParamType extends ConfirmParamType {
+export type ConfirmParamType =
+  | SelectDepartmentTreeItemType
+  | SelectDepartmentTreeItemType[];
+
+export interface OnConfirmParamType {
+  selection: ConfirmParamType;
   done: () => void;
 }
 export interface OnCancelParamType {
@@ -86,9 +88,7 @@ function cancel() {
   }
 }
 
-function confirm(
-  selection: SelectDepartmentTreeItemType | SelectDepartmentTreeItemType[]
-) {
+function confirm(selection: ConfirmParamType) {
   const isFunction = _isFunction(props.onConfirm);
   if (isFunction) {
     props.onConfirm({ done, selection });

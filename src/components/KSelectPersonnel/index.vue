@@ -34,10 +34,12 @@ export interface MixinDataType {
   title?: string;
   defaultSelection?: SelectPersonnelListItemType[];
 }
-export interface ConfirmParamType {
-  selection: SelectPersonnelListItemType | SelectPersonnelListItemType[];
-}
-export interface OnConfirmParamType extends ConfirmParamType {
+export type ConfirmParamType =
+  | SelectPersonnelListItemType
+  | SelectPersonnelListItemType[];
+
+export interface OnConfirmParamType {
+  selection: ConfirmParamType;
   done: () => void;
 }
 export interface OnCancelParamType {
@@ -85,9 +87,7 @@ function cancel() {
   }
 }
 
-function confirm(
-  selection: SelectPersonnelListItemType | SelectPersonnelListItemType[]
-) {
+function confirm(selection: ConfirmParamType) {
   const isFunction = _isFunction(props.onConfirm);
   if (isFunction) {
     props.onConfirm({ done, selection });
