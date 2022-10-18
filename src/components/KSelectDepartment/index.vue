@@ -32,9 +32,11 @@ export interface MixinDataType {
   title?: string;
   defaultSelection?: SelectDepartmentTreeItemType[];
 }
-export interface OnConfirmParamType {
-  done: () => void;
+export interface ConfirmParamType {
   selection: SelectDepartmentTreeItemType | SelectDepartmentTreeItemType[];
+}
+export interface OnConfirmParamType extends ConfirmParamType {
+  done: () => void;
 }
 export interface OnCancelParamType {
   done: () => void;

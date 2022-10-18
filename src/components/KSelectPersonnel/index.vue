@@ -34,9 +34,11 @@ export interface MixinDataType {
   title?: string;
   defaultSelection?: SelectPersonnelListItemType[];
 }
-export interface OnConfirmParamType {
-  done: () => void;
+export interface ConfirmParamType {
   selection: SelectPersonnelListItemType | SelectPersonnelListItemType[];
+}
+export interface OnConfirmParamType extends ConfirmParamType {
+  done: () => void;
 }
 export interface OnCancelParamType {
   done: () => void;
