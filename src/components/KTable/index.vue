@@ -100,7 +100,7 @@ import CheckboxColumn from './components/CheckboxColumn/index.vue';
 import TableColumnConfiguration from './components/TableColumnConfiguration/index.vue';
 import { useKeepScroll } from './hooks';
 
-type RowType = GetArrayElementType<Props['tableData']>;
+type RowType = GetArrayElementType<Props['tableData']> | any;
 
 interface Props {
   tableData: unknown[];

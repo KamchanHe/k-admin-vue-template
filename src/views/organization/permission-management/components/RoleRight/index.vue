@@ -31,7 +31,7 @@ const activeId = computed(() => {
   return targetActiveId;
 });
 
-const menuType = ref('permission');
+const menuType = ref('account');
 
 const menus = [
   {

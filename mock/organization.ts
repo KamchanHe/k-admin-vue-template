@@ -1416,7 +1416,7 @@ const getRoleList: MockMethodType = {
 };
 
 const getRoleDetail: MockMethodType = {
-  url: '/k-admin-template/sys/role/:id',
+  url: '/k-admin-template/sys/role/getById/:id',
   method: 'get',
   response: () => {
     return {

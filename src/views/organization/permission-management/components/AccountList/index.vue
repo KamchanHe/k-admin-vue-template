@@ -45,11 +45,11 @@
       :page="pageNum"
       @pagination="paginationChange"
     ></KPagination>
-    <KSelectPersonnel
+    <KSelectPersonnelMultiple
       selectType="multiple"
       ref="KSelectPersonnelMultipleRef"
       :beforeConfirm="confirmAdd"
-    ></KSelectPersonnel>
+    ></KSelectPersonnelMultiple>
   </div>
 </template>
 
@@ -58,8 +58,8 @@ import { ref } from 'vue';
 import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
 import KPagination from '@/components/KPagination/index.vue';
-import KSelectPersonnel from '@/components/KSelectPersonnel/index.vue';
-import type { BeforeConfirmParamType } from '@/components/KSelectPersonnel/index.vue';
+import KSelectPersonnelMultiple from '@/components/KSelectPersonnel/Multiple/index.vue';
+import type { BeforeConfirmParamType } from '@/components/KSelectPersonnel/Multiple/index.vue';
 
 import { withLoading } from '@/utils/with-loading';
 import { BiMapConversion } from '@/utils/bi-map';
@@ -141,7 +141,7 @@ function selectionChange(value: PersonnelPageItemType[]) {
 }
 
 const KSelectPersonnelMultipleRef =
-  ref<InstanceType<typeof KSelectPersonnel>>();
+  ref<InstanceType<typeof KSelectPersonnelMultiple>>();
 function handleAdd() {
   KSelectPersonnelMultipleRef.value?.open({});
 }

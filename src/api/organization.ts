@@ -76,7 +76,7 @@ export function getRoleDetail<
   Q extends GetRoleDetailRequest,
   S extends GetRoleDetailResponse
 >(id: Q) {
-  return Service.get<Q, S>(`sys/role/${id}`);
+  return Service.get<Q, S>(`sys/role/getById/${id}`);
 }
 
 export function createRole<

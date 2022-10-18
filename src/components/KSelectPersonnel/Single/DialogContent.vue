@@ -142,7 +142,7 @@ function confirm(row: SelectPersonnelListItemType) {
 
 <script lang="ts">
 export default {
-  name: 'Single'
+  name: 'DialogContent'
 };
 </script>
 

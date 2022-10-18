@@ -19,30 +19,32 @@
     <el-button @click="selectPersonnelMultiple" type="primary">
       选择人员(多选)
     </el-button>
-    <KSelectDepartment
+    <KSelectDepartmentSingle
       selectType="single"
       ref="KSelectDepartmentSingleRef"
-    ></KSelectDepartment>
-    <KSelectDepartment
+    ></KSelectDepartmentSingle>
+    <KSelectDepartmentMultiple
       selectType="multiple"
       ref="KSelectDepartmentMultipleRef"
-    ></KSelectDepartment>
-    <KSelectPersonnel
+    ></KSelectDepartmentMultiple>
+    <KSelectPersonnelSingle
       selectType="single"
       ref="KSelectPersonnelSingleRef"
-    ></KSelectPersonnel>
-    <KSelectPersonnel
+    ></KSelectPersonnelSingle>
+    <KSelectPersonnelMultiple
       selectType="multiple"
       ref="KSelectPersonnelMultipleRef"
-    ></KSelectPersonnel>
+    ></KSelectPersonnelMultiple>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useUserStore } from '@/store';
-import KSelectDepartment from '@/components/KSelectDepartment/index.vue';
-import KSelectPersonnel from '@/components/KSelectPersonnel/index.vue';
+import KSelectDepartmentSingle from '@/components/KSelectDepartment/Single/index.vue';
+import KSelectDepartmentMultiple from '@/components/KSelectDepartment/Multiple/index.vue';
+import KSelectPersonnelSingle from '@/components/KSelectPersonnel/Single/index.vue';
+import KSelectPersonnelMultiple from '@/components/KSelectPersonnel/Multiple/index.vue';
 
 const userStore = useUserStore();
 
@@ -50,12 +52,12 @@ const username = computed(() => userStore.username);
 const roles = computed(() => userStore.roles);
 const inputValue = ref('');
 const KSelectDepartmentSingleRef =
-  ref<InstanceType<typeof KSelectDepartment>>();
+  ref<InstanceType<typeof KSelectDepartmentSingle>>();
 function selectDepartmentSingle() {
   KSelectDepartmentSingleRef.value?.open({});
 }
 const KSelectDepartmentMultipleRef =
-  ref<InstanceType<typeof KSelectDepartment>>();
+  ref<InstanceType<typeof KSelectDepartmentMultiple>>();
 function selectDepartmentMultiple() {
   KSelectDepartmentMultipleRef.value?.open({
     defaultSelection: [
@@ -65,12 +67,13 @@ function selectDepartmentMultiple() {
   });
 }
 
-const KSelectPersonnelSingleRef = ref<InstanceType<typeof KSelectPersonnel>>();
+const KSelectPersonnelSingleRef =
+  ref<InstanceType<typeof KSelectPersonnelSingle>>();
 function selectPersonnelSingle() {
   KSelectPersonnelSingleRef.value?.open({});
 }
 const KSelectPersonnelMultipleRef =
-  ref<InstanceType<typeof KSelectPersonnel>>();
+  ref<InstanceType<typeof KSelectPersonnelMultiple>>();
 function selectPersonnelMultiple() {
   KSelectPersonnelMultipleRef.value?.open({
     defaultSelection: [

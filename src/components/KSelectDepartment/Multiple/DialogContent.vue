@@ -3,7 +3,7 @@
     <KDepartmentTree
       class="tree-box"
       ref="KDepartmentTreeRef"
-      :departmentSelectType="departmentSelectType"
+      departmentSelectType="multiple"
       @selectionChange="departmentTreeSelectionChange"
     ></KDepartmentTree>
     <div class="table-box">
@@ -74,7 +74,6 @@ import {
 import type { ElTree } from 'element-plus';
 
 interface Props {
-  departmentSelectType?: 'single' | 'multiple';
   defaultSelection?: SelectDepartmentTreeItemType[];
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -178,7 +177,7 @@ function confirm() {
 
 <script lang="ts">
 export default {
-  name: 'Multiple'
+  name: 'DialogContent'
 };
 </script>
 
