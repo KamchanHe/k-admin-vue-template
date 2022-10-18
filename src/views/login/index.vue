@@ -1,5 +1,5 @@
 <template>
-  <div class="container-box page-box">
+  <div class="container-box">
     <div class="login-left hidden-sm-and-down">
       <el-image class="auxiliary-figure" :src="WelcomeCats"></el-image>
       <el-image class="main-figure" :src="Welcoming"></el-image>
@@ -200,9 +200,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-box {
-  display: flex;
-  height: 100%;
+.container-box {
+  flex-direction: row;
 }
 
 .login-left {
