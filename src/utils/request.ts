@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { getToken } from '@/utils/auth';
+import { getToken, getTenant } from '@/utils/auth';
 import { useUserStore } from '@/store';
 import type { ResultType } from '@/types/axios';
 
@@ -23,9 +23,11 @@ class Service {
         );
       }
       const token: string = getToken();
+      const tenant: string = getTenant();
       if (token) {
         request.headers.Authorization = token;
       }
+      request.headers['tenant-id'] = tenant;
       return request;
     });
 
