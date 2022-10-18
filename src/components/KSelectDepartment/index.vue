@@ -32,32 +32,34 @@ export interface MixinDataType {
   title?: string;
   defaultSelection?: SelectDepartmentTreeItemType[];
 }
-export type ConfirmParamType =
-  | SelectDepartmentTreeItemType
-  | SelectDepartmentTreeItemType[];
+export type ConfirmParamType<T = 'multiple'> = T extends 'single'
+  ? SelectDepartmentTreeItemType
+  : T extends 'multiple'
+  ? SelectDepartmentTreeItemType[]
+  : SelectDepartmentTreeItemType | SelectDepartmentTreeItemType[];
 
-export interface OnConfirmParamType {
-  selection: ConfirmParamType;
+export interface BeforeConfirmParamType<T = 'multiple'> {
+  selection?: ConfirmParamType<T>;
   done: () => void;
 }
-export interface OnCancelParamType {
+export interface BeforeCancelParamType<T = 'multiple'> {
   done: () => void;
 }
-export type OnConfirmType = ({ done, selection }: OnConfirmParamType) => void;
-export type OnCancelType = ({ done }: OnCancelParamType) => void;
+export type BeforeConfirmType<T = 'multiple'> = ({
+  selection,
+  done
+}: BeforeConfirmParamType<T>) => void;
+export type BeforeCancelType<T = 'multiple'> = (
+  params: BeforeCancelParamType<T>
+) => void;
 
-// eslint-disable-next-line no-unused-vars
-const props = defineProps({
-  selectType: {
-    type: String,
-    default: 'multiple'
-  },
-  onConfirm: {
-    type: Function
-  },
-  onCancel: {
-    type: Function
-  }
+interface Props {
+  selectType?: 'single' | 'multiple';
+  beforeConfirm?: BeforeConfirmType;
+  beforeCancel?: BeforeCancelType;
+}
+const props = withDefaults(defineProps<Props>(), {
+  selectType: 'multiple'
 });
 
 const emits = defineEmits(['confirm', 'cancel']);
@@ -79,9 +81,9 @@ function done() {
 }
 
 function cancel() {
-  const isFunction = _isFunction(props.onCancel);
+  const isFunction = _isFunction(props.beforeCancel);
   if (isFunction) {
-    props.onCancel({ done });
+    props.beforeCancel({ done });
   } else {
     emits('cancel');
     done();
@@ -89,9 +91,9 @@ function cancel() {
 }
 
 function confirm(selection: ConfirmParamType) {
-  const isFunction = _isFunction(props.onConfirm);
+  const isFunction = _isFunction(props.beforeConfirm);
   if (isFunction) {
-    props.onConfirm({ done, selection });
+    props.beforeConfirm({ done, selection });
   } else {
     emits('confirm', selection);
     done();

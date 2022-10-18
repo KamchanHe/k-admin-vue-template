@@ -48,7 +48,7 @@
     <KSelectPersonnel
       selectType="multiple"
       ref="KSelectPersonnelMultipleRef"
-      :onConfirm="confirmAdd"
+      :beforeConfirm="confirmAdd"
     ></KSelectPersonnel>
   </div>
 </template>
@@ -59,7 +59,7 @@ import KHeaderSearch from '@/components/KHeaderSearch/index.vue';
 import KTable from '@/components/KTable/index.vue';
 import KPagination from '@/components/KPagination/index.vue';
 import KSelectPersonnel from '@/components/KSelectPersonnel/index.vue';
-import type { OnConfirmType } from '@/components/KSelectPersonnel/index.vue';
+import type { BeforeConfirmParamType } from '@/components/KSelectPersonnel/index.vue';
 
 import { withLoading } from '@/utils/with-loading';
 import { BiMapConversion } from '@/utils/bi-map';
@@ -146,7 +146,7 @@ function handleAdd() {
   KSelectPersonnelMultipleRef.value?.open({});
 }
 
-const confirmAdd: OnConfirmType = ({ done, selection: value }) => {
+function confirmAdd({ done, selection: value }: BeforeConfirmParamType) {
   const ids = _map(value as [], 'id');
   if (!activeId.value) return;
   withLoading(apiSaveRolePersonnel)({
@@ -157,7 +157,7 @@ const confirmAdd: OnConfirmType = ({ done, selection: value }) => {
     done();
     handleGetTableData();
   });
-};
+}
 
 function handleDelete() {
   const isEmpty = _isEmpty(selection.value);
